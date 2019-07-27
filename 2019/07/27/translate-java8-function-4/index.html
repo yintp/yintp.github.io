@@ -6,16 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://yintp.github.io">
-  <title>Archives: 2019/7 | yintp&#39;s blog</title>
+  <title>java.util.function包信息 | yintp&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="后端,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Java,Developer,Programmer,Coder,Geek">
-<meta property="og:type" content="website">
-<meta property="og:title" content="yintp&#39;s blog">
-<meta property="og:url" content="https://yintp.github.io/archives/2019/07/index.html">
+  <meta name="description" content="1. 包 package-info信息，位于java.util.function包下。">
+<meta name="keywords" content="Java,文档翻译">
+<meta property="og:type" content="article">
+<meta property="og:title" content="java.util.function包信息">
+<meta property="og:url" content="https://yintp.github.io/2019/07/27/translate-java8-function-4/index.html">
 <meta property="og:site_name" content="yintp&#39;s blog">
+<meta property="og:description" content="1. 包 package-info信息，位于java.util.function包下。">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-07-27T13:18:52.216Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="yintp&#39;s blog">
+<meta name="twitter:title" content="java.util.function包信息">
+<meta name="twitter:description" content="1. 包 package-info信息，位于java.util.function包下。">
   
     <link rel="alternative" href="/atom.xml" title="yintp&#39;s blog" type="application/atom+xml">
   
@@ -147,36 +151,81 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
+            <article id="post-translate-java8-function-4" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
   
+    <h1 class="article-title" itemprop="name">
+      java.util.function包信息
+    </h1>
   
-    
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/27/translate-java8-function-4/" class="archive-article-date">
+
+
+        
+          <br/>
+          <a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
+            <span class="icon-smile"></span>
+            <span id="busuanzi_container_page_pv" style="color:#999;font-size:16px;">
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+          </a>
+        
+
+        
+        <a href="/2019/07/27/translate-java8-function-4/" class="archive-article-date">
   	<time datetime="2019-07-27T09:32:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-27</time>
 </a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/27/translate-java8-function-4/">java.util.function包信息</a>
-    </h1>
-  
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-包"><a href="#1-包" class="headerlink" title="1. 包"></a>1. 包</h1><ul>
+<li>package-info信息，位于java.util.function包下。</li>
+</ul>
+<a id="more"></a>
 
-        <div class="article-info info-on-right">
-          
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * &lt;em&gt;Functional interfaces&lt;/em&gt; provide target types for lambda expressions</span></span><br><span class="line"><span class="comment"> * and method references.  Each functional interface has a single abstract</span></span><br><span class="line"><span class="comment"> * method, called the &lt;em&gt;functional method&lt;/em&gt; for that functional interface,</span></span><br><span class="line"><span class="comment"> * to which the lambda expression's parameter and return types are matched or</span></span><br><span class="line"><span class="comment"> * adapted.  Functional interfaces can provide a target type in multiple</span></span><br><span class="line"><span class="comment"> * contexts, such as assignment context, method invocation, or cast context:</span></span><br><span class="line"><span class="comment"> * 函数式接口为lambda表达式和方法引用提供目标类型。</span></span><br><span class="line"><span class="comment"> * 每个函数式接口有一个抽象方法，称为函数式接口的函数方法，</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;pre&gt;&#123;<span class="doctag">@code</span></span></span><br><span class="line"><span class="comment"> *     // Assignment context</span></span><br><span class="line"><span class="comment"> *     Predicate&lt;String&gt; p = String::isEmpty;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *     // Method invocation context</span></span><br><span class="line"><span class="comment"> *     stream.filter(e -&gt; e.getSize() &gt; 10)...</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *     // Cast context</span></span><br><span class="line"><span class="comment"> *     stream.map((ToIntFunction) e -&gt; e.getSize())...</span></span><br><span class="line"><span class="comment"> * &#125;&lt;/pre&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;The interfaces in this package are general purpose functional interfaces</span></span><br><span class="line"><span class="comment"> * used by the JDK, and are available to be used by user code as well.  While</span></span><br><span class="line"><span class="comment"> * they do not identify a complete set of function shapes to which lambda</span></span><br><span class="line"><span class="comment"> * expressions might be adapted, they provide enough to cover common</span></span><br><span class="line"><span class="comment"> * requirements. Other functional interfaces provided for specific purposes,</span></span><br><span class="line"><span class="comment"> * such as &#123;<span class="doctag">@link</span> java.io.FileFilter&#125;, are defined in the packages where they</span></span><br><span class="line"><span class="comment"> * are used.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;The interfaces in this package are annotated with</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@link</span> java.lang.FunctionalInterface&#125;. This annotation is not a requirement</span></span><br><span class="line"><span class="comment"> * for the compiler to recognize an interface as a functional interface, but</span></span><br><span class="line"><span class="comment"> * merely an aid to capture design intent and enlist the help of the compiler in</span></span><br><span class="line"><span class="comment"> * identifying accidental violations of design intent.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;Functional interfaces often represent abstract concepts like functions,</span></span><br><span class="line"><span class="comment"> * actions, or predicates.  In documenting functional interfaces, or referring</span></span><br><span class="line"><span class="comment"> * to variables typed as functional interfaces, it is common to refer directly</span></span><br><span class="line"><span class="comment"> * to those abstract concepts, for example using "this function" instead of</span></span><br><span class="line"><span class="comment"> * "the function represented by this object".  When an API method is said to</span></span><br><span class="line"><span class="comment"> * accept or return a functional interface in this manner, such as "applies the</span></span><br><span class="line"><span class="comment"> * provided function to...", this is understood to mean a &lt;i&gt;non-null&lt;/i&gt;</span></span><br><span class="line"><span class="comment"> * reference to an object implementing the appropriate functional interface,</span></span><br><span class="line"><span class="comment"> * unless potential nullity is explicitly specified.</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;The functional interfaces in this package follow an extensible naming</span></span><br><span class="line"><span class="comment"> * convention, as follows:</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;ul&gt;</span></span><br><span class="line"><span class="comment"> *     &lt;li&gt;There are several basic function shapes, including</span></span><br><span class="line"><span class="comment"> *     &#123;<span class="doctag">@link</span> java.util.function.Function&#125; (unary function from &#123;<span class="doctag">@code</span> T&#125; to &#123;<span class="doctag">@code</span> R&#125;),</span></span><br><span class="line"><span class="comment"> *     &#123;<span class="doctag">@link</span> java.util.function.Consumer&#125; (unary function from &#123;<span class="doctag">@code</span> T&#125; to &#123;<span class="doctag">@code</span> void&#125;),</span></span><br><span class="line"><span class="comment"> *     &#123;<span class="doctag">@link</span> java.util.function.Predicate&#125; (unary function from &#123;<span class="doctag">@code</span> T&#125; to &#123;<span class="doctag">@code</span> boolean&#125;),</span></span><br><span class="line"><span class="comment"> *     and &#123;<span class="doctag">@link</span> java.util.function.Supplier&#125; (nilary function to &#123;<span class="doctag">@code</span> R&#125;).</span></span><br><span class="line"><span class="comment"> *     &lt;/li&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *     &lt;li&gt;Function shapes have a natural arity based on how they are most</span></span><br><span class="line"><span class="comment"> *     commonly used.  The basic shapes can be modified by an arity prefix to</span></span><br><span class="line"><span class="comment"> *     indicate a different arity, such as</span></span><br><span class="line"><span class="comment"> *     &#123;<span class="doctag">@link</span> java.util.function.BiFunction&#125; (binary function from &#123;<span class="doctag">@code</span> T&#125; and</span></span><br><span class="line"><span class="comment"> *     &#123;<span class="doctag">@code</span> U&#125; to &#123;<span class="doctag">@code</span> R&#125;).</span></span><br><span class="line"><span class="comment"> *     &lt;/li&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *     &lt;li&gt;There are additional derived function shapes which extend the basic</span></span><br><span class="line"><span class="comment"> *     function shapes, including &#123;<span class="doctag">@link</span> java.util.function.UnaryOperator&#125;</span></span><br><span class="line"><span class="comment"> *     (extends &#123;<span class="doctag">@code</span> Function&#125;) and &#123;<span class="doctag">@link</span> java.util.function.BinaryOperator&#125;</span></span><br><span class="line"><span class="comment"> *     (extends &#123;<span class="doctag">@code</span> BiFunction&#125;).</span></span><br><span class="line"><span class="comment"> *     &lt;/li&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *     &lt;li&gt;Type parameters of functional interfaces can be specialized to</span></span><br><span class="line"><span class="comment"> *     primitives with additional type prefixes.  To specialize the return type</span></span><br><span class="line"><span class="comment"> *     for a type that has both generic return type and generic arguments, we</span></span><br><span class="line"><span class="comment"> *     prefix &#123;<span class="doctag">@code</span> ToXxx&#125;, as in &#123;<span class="doctag">@link</span> java.util.function.ToIntFunction&#125;.</span></span><br><span class="line"><span class="comment"> *     Otherwise, type arguments are specialized left-to-right, as in</span></span><br><span class="line"><span class="comment"> *     &#123;<span class="doctag">@link</span> java.util.function.DoubleConsumer&#125;</span></span><br><span class="line"><span class="comment"> *     or &#123;<span class="doctag">@link</span> java.util.function.ObjIntConsumer&#125;.</span></span><br><span class="line"><span class="comment"> *     (The type prefix &#123;<span class="doctag">@code</span> Obj&#125; is used to indicate that we don't want to</span></span><br><span class="line"><span class="comment"> *     specialize this parameter, but want to move on to the next parameter,</span></span><br><span class="line"><span class="comment"> *     as in &#123;<span class="doctag">@link</span> java.util.function.ObjIntConsumer&#125;.)</span></span><br><span class="line"><span class="comment"> *     These schemes can be combined, as in &#123;<span class="doctag">@code</span> IntToDoubleFunction&#125;.</span></span><br><span class="line"><span class="comment"> *     &lt;/li&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> *     &lt;li&gt;If there are specialization prefixes for all arguments, the arity</span></span><br><span class="line"><span class="comment"> *     prefix may be left out (as in &#123;<span class="doctag">@link</span> java.util.function.ObjIntConsumer&#125;).</span></span><br><span class="line"><span class="comment"> *     &lt;/li&gt;</span></span><br><span class="line"><span class="comment"> * &lt;/ul&gt;</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span> java.lang.FunctionalInterface</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 1.8</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/wechatpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -192,7 +241,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -205,327 +254,118 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://bshare.optimix.asia/barCode?site=weixin&url=https://yintp.github.io/2019/07/27/translate-java8-function-4/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/27/essay-2/" class="archive-article-date">
-  	<time datetime="2019-07-27T09:17:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-27</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/07/27/essay-2/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">戒子书</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/27/essay-2/">戒子书</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">古文</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">家书</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/杂文//" class="article-tag-list-link color3">杂文</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-包"><span class="toc-number">1.</span> <span class="toc-text">1. 包</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/26/essay-1/" class="archive-article-date">
-  	<time datetime="2019-07-26T13:12:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/26/essay-1/">威斯敏斯特教堂边的墓志铭</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">思考</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/杂文//" class="article-tag-list-link color3">杂文</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/25/translate-java8-function-3/" class="archive-article-date">
-  	<time datetime="2019-07-25T06:02:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-25</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/25/translate-java8-function-3/">Java8 BiConsumer翻译</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">文档翻译</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/24/translate-java8-function-2/" class="archive-article-date">
-  	<time datetime="2019-07-24T13:00:36.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-24</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/24/translate-java8-function-2/">Java8 Consumer翻译</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">文档翻译</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/19/translate-java8-function-1/" class="archive-article-date">
-  	<time datetime="2019-07-19T15:46:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-19</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/19/translate-java8-function-1/">Java8 FunctionalInterface翻译</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">文档翻译</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/18/hello-world/" class="archive-article-date">
-  	<time datetime="2019-07-18T09:55:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/18/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -558,8 +398,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
