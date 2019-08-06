@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://yintp.github.io">
   <title>Java8 BiFunction翻译 | yintp&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1.0 接口 BiFunction接口源码翻译，位于java.util.function包下。">
+  <meta name="description" content="1. 接口 BiFunction接口源码翻译，位于java.util.function包下。">
 <meta name="keywords" content="Java,文档翻译">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Java8 BiFunction翻译">
 <meta property="og:url" content="https://yintp.github.io/2019/08/05/translate-java8-function-6/index.html">
 <meta property="og:site_name" content="yintp&#39;s blog">
-<meta property="og:description" content="1.0 接口 BiFunction接口源码翻译，位于java.util.function包下。">
+<meta property="og:description" content="1. 接口 BiFunction接口源码翻译，位于java.util.function包下。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-05T12:38:13.280Z">
+<meta property="og:updated_time" content="2019-08-05T12:54:53.102Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java8 BiFunction翻译">
-<meta name="twitter:description" content="1.0 接口 BiFunction接口源码翻译，位于java.util.function包下。">
+<meta name="twitter:description" content="1. 接口 BiFunction接口源码翻译，位于java.util.function包下。">
   
     <link rel="alternative" href="/atom.xml" title="yintp&#39;s blog" type="application/atom+xml">
   
@@ -44,7 +44,7 @@
     <canvas id="anm-canvas" class="anm-canvas"></canvas>
     <div class="left-col" q-class="show:isShow">
       
-<div class="overlay" style="background: #4d4d4d"></div>
+<div class="overlay" style="background: #000000"></div>
 <div class="intrude-less">
 	<header id="header" class="inner">
 		<a href="/" class="profilepic">
@@ -97,7 +97,7 @@
     <div class="mid-col" q-class="show:isShow,hide:isShow|isFalse">
       
 <nav id="mobile-nav">
-  	<div class="overlay js-overlay" style="background: #4d4d4d"></div>
+  	<div class="overlay js-overlay" style="background: #000000"></div>
 	<div class="btnctn js-mobile-btnctn">
   		<div class="slider-trigger list" q-on="click: openSlider(e)"><i class="icon icon-sort"></i></div>
 	</div>
@@ -182,7 +182,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-0-接口"><a href="#1-0-接口" class="headerlink" title="1.0 接口"></a>1.0 接口</h1><ul>
+        <h1 id="1-接口"><a href="#1-接口" class="headerlink" title="1. 接口"></a>1. 接口</h1><ul>
 <li>BiFunction接口源码翻译，位于java.util.function包下。</li>
 </ul>
 <a id="more"></a>
@@ -350,7 +350,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-0-接口"><span class="toc-number">1.</span> <span class="toc-text">1.0 接口</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-方法"><span class="toc-number">2.</span> <span class="toc-text">2. 方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-1-R-apply-T-t-U-u"><span class="toc-number">3.</span> <span class="toc-text">2.1. R apply(T t, U u)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-2-default-BiFunction-lt-T-U-V-gt-andThen-Function-lt-super-R-extends-V-gt-after"><span class="toc-number">4.</span> <span class="toc-text">2.2. default  BiFunction&lt;T, U, V&gt; andThen(Function&lt;? super R, ? extends V&gt; after)</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-接口"><span class="toc-number">1.</span> <span class="toc-text">1. 接口</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-方法"><span class="toc-number">2.</span> <span class="toc-text">2. 方法</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-1-R-apply-T-t-U-u"><span class="toc-number">3.</span> <span class="toc-text">2.1. R apply(T t, U u)</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-2-default-BiFunction-lt-T-U-V-gt-andThen-Function-lt-super-R-extends-V-gt-after"><span class="toc-number">4.</span> <span class="toc-text">2.2. default  BiFunction&lt;T, U, V&gt; andThen(Function&lt;? super R, ? extends V&gt; after)</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -475,10 +475,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">思考</a>
               </li>
              
@@ -488,6 +484,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">家书</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
               </li>
              
               <li class="article-tag-list-item">
