@@ -6,20 +6,16 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://yintp.github.io">
-  <title>Java8 BiFunction翻译 | yintp&#39;s blog</title>
+  <title>Archives | yintp&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 接口 BiFunction接口源码翻译，位于java.util.function包下。">
-<meta name="keywords" content="Java,文档翻译">
-<meta property="og:type" content="article">
-<meta property="og:title" content="Java8 BiFunction翻译">
-<meta property="og:url" content="https://yintp.github.io/2019/08/05/translate-java8-function-6/index.html">
+  <meta name="keywords" content="后端,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Java,Developer,Programmer,Coder,Geek">
+<meta property="og:type" content="website">
+<meta property="og:title" content="yintp&#39;s blog">
+<meta property="og:url" content="https://yintp.github.io/archives/page/2/index.html">
 <meta property="og:site_name" content="yintp&#39;s blog">
-<meta property="og:description" content="1. 接口 BiFunction接口源码翻译，位于java.util.function包下。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-06T12:08:33.973Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java8 BiFunction翻译">
-<meta name="twitter:description" content="1. 接口 BiFunction接口源码翻译，位于java.util.function包下。">
+<meta name="twitter:title" content="yintp&#39;s blog">
   
     <link rel="alternative" href="/atom.xml" title="yintp&#39;s blog" type="application/atom+xml">
   
@@ -151,85 +147,36 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-translate-java8-function-6" class="article article-type-post " itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
+            
   
-    <h1 class="article-title" itemprop="name">
-      Java8 BiFunction翻译
+  
+    
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2019" class="archive-year">2019</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2019/07/18/hello-world/" class="archive-article-date">
+  	<time datetime="2019-07-18T09:55:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-18</time>
+</a>
+        </div>
+    	 
+  
+    <h1 itemprop="name">
+      <a class="archive-article-title" href="/2019/07/18/hello-world/">Hello World</a>
     </h1>
   
 
-
-        
-          <br/>
-          <a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
-            <span class="icon-smile"></span>
-            <span id="busuanzi_container_page_pv" style="color:#999;font-size:16px;">
-              <span id="busuanzi_value_page_pv"></span>
-            </span>
-          </a>
-        
-
-        
-        <a href="/2019/08/05/translate-java8-function-6/" class="archive-article-date">
-  	<time datetime="2019-08-05T11:34:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-05</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-接口"><a href="#1-接口" class="headerlink" title="1. 接口"></a>1. 接口</h1><ul>
-<li>BiFunction接口源码翻译，位于java.util.function包下。</li>
-</ul>
-<a id="more"></a>
-
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Represents a function that accepts two arguments and produces a result.</span></span><br><span class="line"><span class="comment"> * This is the two-arity specialization of &#123;<span class="doctag">@link</span> Function&#125;.</span></span><br><span class="line"><span class="comment"> * 表示接收两个参数并返回一个结果的函数。</span></span><br><span class="line"><span class="comment"> * 这是一个二元特化Function</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;This is a &lt;a href="package-summary.html"&gt;functional interface&lt;/a&gt;</span></span><br><span class="line"><span class="comment"> * whose functional method is &#123;<span class="doctag">@link</span> #apply(Object, Object)&#125;.</span></span><br><span class="line"><span class="comment"> * 这个函数式接口的函数方法是apply(Object, Object)</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &lt;T&gt; the type of the first argument to the function</span></span><br><span class="line"><span class="comment"> *           函数的第一个参数的类型</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &lt;U&gt; the type of the second argument to the function</span></span><br><span class="line"><span class="comment"> *           函数的第二个参数的类型</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &lt;R&gt; the type of the result of the function</span></span><br><span class="line"><span class="comment"> *           函数结果的类型</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span> Function</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 1.8</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="2-方法"><a href="#2-方法" class="headerlink" title="2. 方法"></a>2. 方法</h1><h2 id="2-1-R-apply-T-t-U-u"><a href="#2-1-R-apply-T-t-U-u" class="headerlink" title="2.1. R apply(T t, U u)"></a>2.1. R apply(T t, U u)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Applies this function to the given arguments.</span></span><br><span class="line"><span class="comment"> * 将此函数应用于给定的参数</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> t the first function argument</span></span><br><span class="line"><span class="comment"> *          第一个函数的参数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> u the second function argument</span></span><br><span class="line"><span class="comment"> *          第二个函数的参数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> the function result</span></span><br><span class="line"><span class="comment"> * 函数结果</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="2-2-default-BiFunction-lt-T-U-V-gt-andThen-Function-lt-super-R-extends-V-gt-after"><a href="#2-2-default-BiFunction-lt-T-U-V-gt-andThen-Function-lt-super-R-extends-V-gt-after" class="headerlink" title="2.2. default  BiFunction&lt;T, U, V&gt; andThen(Function&lt;? super R, ? extends V&gt; after)"></a>2.2. default <v> BiFunction&lt;T, U, V&gt; andThen(Function&lt;? super R, ? extends V&gt; after)</v></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Returns a composed function that first applies this function to</span></span><br><span class="line"><span class="comment"> * its input, and then applies the &#123;<span class="doctag">@code</span> after&#125; function to the result.</span></span><br><span class="line"><span class="comment"> * If evaluation of either function throws an exception, it is relayed to</span></span><br><span class="line"><span class="comment"> * the caller of the composed function.</span></span><br><span class="line"><span class="comment"> * 返回一个组合函数，首先将当前函数应用于输入，然后将after函数应用结果。</span></span><br><span class="line"><span class="comment"> * 如果任意一个函数求值抛出异常，则会转发给组合函数的调用者。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &lt;V&gt; the type of output of the &#123;<span class="doctag">@code</span> after&#125; function, and of the</span></span><br><span class="line"><span class="comment"> *           composed function</span></span><br><span class="line"><span class="comment"> *           after函数的输出类型，也是组合函数的输出类型</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> after the function to apply after this function is applied</span></span><br><span class="line"><span class="comment"> *              应用当前函数后应用的函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> a composed function that first applies this function and then</span></span><br><span class="line"><span class="comment"> * applies the &#123;<span class="doctag">@code</span> after&#125; function</span></span><br><span class="line"><span class="comment"> * 返回一个组合函数的结果，首先应用当前函数，然后应用after函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> NullPointerException if after is null</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-      
-
-      
-        <div class="page-reward">
-          <a href="javascript:;" class="page-reward-btn tooltip-top">
-            <div class="tooltip tooltip-east">
-            <span class="tooltip-item">
-              赏
-            </span>
-            <span class="tooltip-content">
-              <span class="tooltip-text">
-                <span class="tooltip-inner">
-                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
-                  <div class="reward-box">
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/img/alipay.png">
-                      <span class="reward-type">支付宝</span>
-                    </div>
-                    
-                    
-                    <div class="reward-box-item">
-                      <img class="reward-img" src="/assets/img/wechatpay.png">
-                      <span class="reward-type">微信</span>
-                    </div>
-                    
-                  </div>
-                </span>
-              </span>
-            </span>
-          </div>
-          </a>
-        </div>
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -237,15 +184,11 @@
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">文档翻译</a>
-        		</li>
       		
 		</ul>
 	</div>
 
-      
+          
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -258,126 +201,20 @@
 	</div>
 
 
-      
-
-      
-        
-<div class="share-btn share-icons tooltip-left">
-  <div class="tooltip tooltip-east">
-    <span class="tooltip-item">
-      <a href="javascript:;" class="share-sns share-outer">
-        <i class="icon icon-share"></i>
-      </a>
-    </span>
-    <span class="tooltip-content">
-      <div class="share-wrap">
-        <div class="share-icons">
-          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
-            <i class="icon icon-weibo"></i>
-          </a>
-          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
-            <i class="icon icon-weixin"></i>
-          </a>
-          <a class="qq share-sns" href="javascript:;" data-type="qq">
-            <i class="icon icon-qq"></i>
-          </a>
-          <a class="douban share-sns" href="javascript:;" data-type="douban">
-            <i class="icon icon-douban"></i>
-          </a>
-          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
-            <i class="icon icon-qzone"></i>
-          </a>
-          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
-            <i class="icon icon-facebook"></i>
-          </a>
-          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
-            <i class="icon icon-twitter"></i>
-          </a>
-          <a class="google share-sns" href="javascript:;" data-type="google">
-            <i class="icon icon-google"></i>
-          </a>
         </div>
-      </div>
-    </span>
-  </div>
-</div>
-
-<div class="page-modal wx-share js-wx-box">
-    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
-    <p>扫一扫，分享到微信</p>
-    <div class="wx-qrcode">
-      <img src="http://bshare.optimix.asia/barCode?site=weixin&url=https://yintp.github.io/2019/08/05/translate-java8-function-6/" alt="微信分享二维码">
-    </div>
-</div>
-
-<div class="mask js-mask"></div>
-
-      
-      <div class="clearfix"></div>
-    </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-  
-<nav id="article-nav">
-  
-    <a href="/2019/08/06/translate-java8-function-7/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Java8 Predicate翻译
-        
-      </div>
-    </a>
   
   
-    <a href="/2019/08/01/translate-java8-function-5/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java8 Function翻译</div>
-      <i class="icon-circle-right"></i>
-    </a>
-  
-</nav>
-
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-        <div class="toc-container tooltip-left">
-            <i class="icon-font icon-category"></i>
-            <div class="tooltip tooltip-east">
-                <span class="tooltip-item">
-                </span>
-                <span class="tooltip-content">
-                    <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-接口"><span class="toc-number">1.</span> <span class="toc-text">1. 接口</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-方法"><span class="toc-number">2.</span> <span class="toc-text">2. 方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-R-apply-T-t-U-u"><span class="toc-number">2.1.</span> <span class="toc-text">2.1. R apply(T t, U u)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-default-BiFunction-lt-T-U-V-gt-andThen-Function-lt-super-R-extends-V-gt-after"><span class="toc-number">2.2.</span> <span class="toc-text">2.2. default  BiFunction&lt;T, U, V&gt; andThen(Function&lt;? super R, ? extends V&gt; after)</span></a></li></ol></li></ol>
-                    </div>
-                </span>
-            </div>
-        </div>
-        
-    </div>
-</aside>
-
-
-
-  
-  
+    </div></section>
   
 
-  
-
-  
-
+    
+    <nav id="page-nav">
+      <a class="extend prev" rel="prev" href="/archives/">&laquo; Prev</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
+    </nav>
   
 
 
@@ -411,8 +248,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: true,
-		isArchive: false,
+		isPost: false,
+		isArchive: true,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,

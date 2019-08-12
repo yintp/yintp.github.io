@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://yintp.github.io">
-  <title>Java8 BiFunction翻译 | yintp&#39;s blog</title>
+  <title>essay-3 | yintp&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 接口 BiFunction接口源码翻译，位于java.util.function包下。">
-<meta name="keywords" content="Java,文档翻译">
+  <meta name="description" content="在程序员的道路上走了四年，身边的人有的成为小组组长，有的技术很厉害，当然也有一些止步不前的人。据我观察，成长快的人基本有以下共同点：工作态度认真、乐于帮助同事解决问题、记忆力很好、独特的思维方式、高效的学习方法。这些点我个人认为都非常重要，但让我觉得对于程序员最重要的是学习方法，本文就聊聊Java学习方法。">
+<meta name="keywords" content="思考">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java8 BiFunction翻译">
-<meta property="og:url" content="https://yintp.github.io/2019/08/05/translate-java8-function-6/index.html">
+<meta property="og:title" content="essay-3">
+<meta property="og:url" content="https://yintp.github.io/2019/08/12/essay-3/index.html">
 <meta property="og:site_name" content="yintp&#39;s blog">
-<meta property="og:description" content="1. 接口 BiFunction接口源码翻译，位于java.util.function包下。">
+<meta property="og:description" content="在程序员的道路上走了四年，身边的人有的成为小组组长，有的技术很厉害，当然也有一些止步不前的人。据我观察，成长快的人基本有以下共同点：工作态度认真、乐于帮助同事解决问题、记忆力很好、独特的思维方式、高效的学习方法。这些点我个人认为都非常重要，但让我觉得对于程序员最重要的是学习方法，本文就聊聊Java学习方法。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-06T12:08:33.973Z">
+<meta property="og:updated_time" content="2019-08-12T14:26:11.770Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java8 BiFunction翻译">
-<meta name="twitter:description" content="1. 接口 BiFunction接口源码翻译，位于java.util.function包下。">
+<meta name="twitter:title" content="essay-3">
+<meta name="twitter:description" content="在程序员的道路上走了四年，身边的人有的成为小组组长，有的技术很厉害，当然也有一些止步不前的人。据我观察，成长快的人基本有以下共同点：工作态度认真、乐于帮助同事解决问题、记忆力很好、独特的思维方式、高效的学习方法。这些点我个人认为都非常重要，但让我觉得对于程序员最重要的是学习方法，本文就聊聊Java学习方法。">
   
     <link rel="alternative" href="/atom.xml" title="yintp&#39;s blog" type="application/atom+xml">
   
@@ -151,14 +151,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-translate-java8-function-6" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-essay-3" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Java8 BiFunction翻译
+      essay-3
     </h1>
   
 
@@ -174,24 +174,35 @@
         
 
         
-        <a href="/2019/08/05/translate-java8-function-6/" class="archive-article-date">
-  	<time datetime="2019-08-05T11:34:42.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-05</time>
+        <a href="/2019/08/12/essay-3/" class="archive-article-date">
+  	<time datetime="2019-08-12T12:59:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-12</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-接口"><a href="#1-接口" class="headerlink" title="1. 接口"></a>1. 接口</h1><ul>
-<li>BiFunction接口源码翻译，位于java.util.function包下。</li>
-</ul>
+        <p>在程序员的道路上走了四年，身边的人有的成为小组组长，有的技术很厉害，当然也有一些止步不前的人。<br>据我观察，成长快的人基本有以下共同点：工作态度认真、乐于帮助同事解决问题、记忆力很好、独特的思维方式、高效的学习方法。<br>这些点我个人认为都非常重要，但让我觉得对于程序员最重要的是学习方法，本文就聊聊Java学习方法。</p>
 <a id="more"></a>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Represents a function that accepts two arguments and produces a result.</span></span><br><span class="line"><span class="comment"> * This is the two-arity specialization of &#123;<span class="doctag">@link</span> Function&#125;.</span></span><br><span class="line"><span class="comment"> * 表示接收两个参数并返回一个结果的函数。</span></span><br><span class="line"><span class="comment"> * 这是一个二元特化Function</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;This is a &lt;a href="package-summary.html"&gt;functional interface&lt;/a&gt;</span></span><br><span class="line"><span class="comment"> * whose functional method is &#123;<span class="doctag">@link</span> #apply(Object, Object)&#125;.</span></span><br><span class="line"><span class="comment"> * 这个函数式接口的函数方法是apply(Object, Object)</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &lt;T&gt; the type of the first argument to the function</span></span><br><span class="line"><span class="comment"> *           函数的第一个参数的类型</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &lt;U&gt; the type of the second argument to the function</span></span><br><span class="line"><span class="comment"> *           函数的第二个参数的类型</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &lt;R&gt; the type of the result of the function</span></span><br><span class="line"><span class="comment"> *           函数结果的类型</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span> Function</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 1.8</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<p>作为一个Java程序员，如何学习Java才能循序渐进，并最终精通呢？<br>21世纪是信息时代，得益于此，我们来大致来列列学习Java有哪些途径：</p>
+<ul>
+<li>视频。各种教学视频，质量有好有坏。如果选择一些大点的机构，里面的讲师教的还是不错的，缺点是太花时间。</li>
+<li>技术书籍。一般来说书籍的内容都是很系统且严谨的，里面包含了大量技术牛人的经验以及智慧结晶，是非常高效的学习途径。</li>
+<li>博客。质量良莠不齐，也有一些技术大牛写出来的好文章。</li>
+<li>开发手册。里面很详细的教你完成某些基础的例子。</li>
+<li>规范。一份完备且系统的描述，包含该技术涉及的方方面面。同时体现了该技术设计思想，是高度抽象的描述。</li>
+<li>API文档。很全的技术文档，当我们编程的时候往往很需要它。</li>
+<li>源码。终极资料。</li>
+</ul>
+<p>其实看完这些学习途径，心中大致也有个数了。一般来说，看基础视频或者学习开发手册，再配合API文档基本就能写代码了，很多人就停留在这个阶段。<br>如果再往上就需要我们熟练API文档以及熟悉Java语言规范一些思想方面的东西了，这样会让我们Java知识结构变得完整和系统。<br>最终就是学习源码了，学习别人为什么这样设计以及这样设计的好处等等。其实到这里可能就是很多层面的东西了，比如思想、模式、<br>数据结构、算法等等。此外，还有一些技术沙龙、开发者大会、社区活动等也是交流学习的好机会。<br>对于那些最核心的技术，我们应该做到：</p>
+<ul>
+<li>通读规范。</li>
+<li>重要部分的API文档要通读。</li>
+<li>如果工作需要，还可能需要读源码。</li>
+</ul>
+<p>当我们学习一门技术的时候，记得把相关资料按照金字塔结构进行分类。从基础学起，过关斩将，这样才能做到循序渐进，并最终精通。</p>
 
-<h1 id="2-方法"><a href="#2-方法" class="headerlink" title="2. 方法"></a>2. 方法</h1><h2 id="2-1-R-apply-T-t-U-u"><a href="#2-1-R-apply-T-t-U-u" class="headerlink" title="2.1. R apply(T t, U u)"></a>2.1. R apply(T t, U u)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Applies this function to the given arguments.</span></span><br><span class="line"><span class="comment"> * 将此函数应用于给定的参数</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> t the first function argument</span></span><br><span class="line"><span class="comment"> *          第一个函数的参数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> u the second function argument</span></span><br><span class="line"><span class="comment"> *          第二个函数的参数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> the function result</span></span><br><span class="line"><span class="comment"> * 函数结果</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="2-2-default-BiFunction-lt-T-U-V-gt-andThen-Function-lt-super-R-extends-V-gt-after"><a href="#2-2-default-BiFunction-lt-T-U-V-gt-andThen-Function-lt-super-R-extends-V-gt-after" class="headerlink" title="2.2. default  BiFunction&lt;T, U, V&gt; andThen(Function&lt;? super R, ? extends V&gt; after)"></a>2.2. default <v> BiFunction&lt;T, U, V&gt; andThen(Function&lt;? super R, ? extends V&gt; after)</v></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Returns a composed function that first applies this function to</span></span><br><span class="line"><span class="comment"> * its input, and then applies the &#123;<span class="doctag">@code</span> after&#125; function to the result.</span></span><br><span class="line"><span class="comment"> * If evaluation of either function throws an exception, it is relayed to</span></span><br><span class="line"><span class="comment"> * the caller of the composed function.</span></span><br><span class="line"><span class="comment"> * 返回一个组合函数，首先将当前函数应用于输入，然后将after函数应用结果。</span></span><br><span class="line"><span class="comment"> * 如果任意一个函数求值抛出异常，则会转发给组合函数的调用者。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &lt;V&gt; the type of output of the &#123;<span class="doctag">@code</span> after&#125; function, and of the</span></span><br><span class="line"><span class="comment"> *           composed function</span></span><br><span class="line"><span class="comment"> *           after函数的输出类型，也是组合函数的输出类型</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> after the function to apply after this function is applied</span></span><br><span class="line"><span class="comment"> *              应用当前函数后应用的函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> a composed function that first applies this function and then</span></span><br><span class="line"><span class="comment"> * applies the &#123;<span class="doctag">@code</span> after&#125; function</span></span><br><span class="line"><span class="comment"> * 返回一个组合函数的结果，首先应用当前函数，然后应用after函数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> NullPointerException if after is null</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
       
 
       
@@ -235,11 +246,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">文档翻译</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">思考</a>
         		</li>
       		
 		</ul>
@@ -251,7 +258,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
+        			<a href="/categories/杂文//" class="article-tag-list-link color3">杂文</a>
         		</li>
       		
 		</ul>
@@ -306,7 +313,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://bshare.optimix.asia/barCode?site=weixin&url=https://yintp.github.io/2019/08/05/translate-java8-function-6/" alt="微信分享二维码">
+      <img src="http://bshare.optimix.asia/barCode?site=weixin&url=https://yintp.github.io/2019/08/12/essay-3/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -321,18 +328,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/08/06/translate-java8-function-7/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          Java8 Predicate翻译
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/08/01/translate-java8-function-5/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java8 Function翻译</div>
+    <a href="/2019/08/06/translate-java8-function-7/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java8 Predicate翻译</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -359,7 +357,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-接口"><span class="toc-number">1.</span> <span class="toc-text">1. 接口</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-方法"><span class="toc-number">2.</span> <span class="toc-text">2. 方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-R-apply-T-t-U-u"><span class="toc-number">2.1.</span> <span class="toc-text">2.1. R apply(T t, U u)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-default-BiFunction-lt-T-U-V-gt-andThen-Function-lt-super-R-extends-V-gt-after"><span class="toc-number">2.2.</span> <span class="toc-text">2.2. default  BiFunction&lt;T, U, V&gt; andThen(Function&lt;? super R, ? extends V&gt; after)</span></a></li></ol></li></ol>
+                    目录，不存在的…
                     </div>
                 </span>
             </div>
