@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://yintp.github.io">
-  <title>威斯敏斯特教堂边的墓志铭 | yintp&#39;s blog</title>
+  <title>Java8 Predicate翻译 | yintp&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="在英国最古老的建筑物威斯敏斯特教堂旁边，矗立着一块墓碑，上面刻着一段非常著名的话：当我年轻的时候，我的想象力从没有受过限制，我梦想改变这个世界。当我成熟以后，我发现我不能够改变这个世界，我将目光缩短了些，决定只改变我的国家。">
-<meta name="keywords" content="思考">
+  <meta name="description" content="1. 接口 Predicate接口源码翻译，位于java.util.function包下。">
+<meta name="keywords" content="Java,文档翻译">
 <meta property="og:type" content="article">
-<meta property="og:title" content="威斯敏斯特教堂边的墓志铭">
-<meta property="og:url" content="https://yintp.github.io/2019/07/26/essay-1/index.html">
+<meta property="og:title" content="Java8 Predicate翻译">
+<meta property="og:url" content="https://yintp.github.io/2019/08/06/translate-java8-function-7/index.html">
 <meta property="og:site_name" content="yintp&#39;s blog">
-<meta property="og:description" content="在英国最古老的建筑物威斯敏斯特教堂旁边，矗立着一块墓碑，上面刻着一段非常著名的话：当我年轻的时候，我的想象力从没有受过限制，我梦想改变这个世界。当我成熟以后，我发现我不能够改变这个世界，我将目光缩短了些，决定只改变我的国家。">
+<meta property="og:description" content="1. 接口 Predicate接口源码翻译，位于java.util.function包下。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-05T11:28:16.644Z">
+<meta property="og:updated_time" content="2019-08-08T05:22:01.909Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="威斯敏斯特教堂边的墓志铭">
-<meta name="twitter:description" content="在英国最古老的建筑物威斯敏斯特教堂旁边，矗立着一块墓碑，上面刻着一段非常著名的话：当我年轻的时候，我的想象力从没有受过限制，我梦想改变这个世界。当我成熟以后，我发现我不能够改变这个世界，我将目光缩短了些，决定只改变我的国家。">
+<meta name="twitter:title" content="Java8 Predicate翻译">
+<meta name="twitter:description" content="1. 接口 Predicate接口源码翻译，位于java.util.function包下。">
   
     <link rel="alternative" href="/atom.xml" title="yintp&#39;s blog" type="application/atom+xml">
   
@@ -151,14 +151,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-essay-1" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-translate-java8-function-7" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      威斯敏斯特教堂边的墓志铭
+      Java8 Predicate翻译
     </h1>
   
 
@@ -174,19 +174,30 @@
         
 
         
-        <a href="/2019/07/26/essay-1/" class="archive-article-date">
-  	<time datetime="2019-07-26T13:12:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-26</time>
+        <a href="/2019/08/06/translate-java8-function-7/" class="archive-article-date">
+  	<time datetime="2019-08-06T11:51:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-06</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>在英国最古老的建筑物威斯敏斯特教堂旁边，矗立着一块墓碑，上面刻着一段非常著名的话：<br>当我年轻的时候，我的想象力从没有受过限制，我梦想改变这个世界。<br>当我成熟以后，我发现我不能够改变这个世界，我将目光缩短了些，决定只改变我的国家。</p>
+        <h1 id="1-接口"><a href="#1-接口" class="headerlink" title="1. 接口"></a>1. 接口</h1><ul>
+<li>Predicate接口源码翻译，位于java.util.function包下。</li>
+</ul>
 <a id="more"></a>
 
-<p>当我进入暮年以后，我发现我不能够改变我的国家，我的最后愿望仅仅是改变一下我的家庭。但是，这也不可能。<br>当我现在躺在床上，行将就木时，我突然意识到：如果一开始我仅仅去改变自己，然后作为一个榜样，我可能改变我的家庭；在家人的帮助和鼓励下，我可能为国家做一些事情。<br>然而，谁知道呢？我甚至可能改变这个世界！</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Represents a predicate (boolean-valued function) of one argument.</span></span><br><span class="line"><span class="comment"> * 表示一个参数的断言（布尔值函数）</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;This is a &lt;a href="package-summary.html"&gt;functional interface&lt;/a&gt;</span></span><br><span class="line"><span class="comment"> * whose functional method is &#123;<span class="doctag">@link</span> #test(Object)&#125;.</span></span><br><span class="line"><span class="comment"> * 这个函数式接口的函数方法是test(Object)</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &lt;T&gt; the type of the input to the predicate</span></span><br><span class="line"><span class="comment"> *           断言输入的类型</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 1.8</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
 
+<h1 id="2-方法"><a href="#2-方法" class="headerlink" title="2. 方法"></a>2. 方法</h1><h2 id="2-1-boolean-test-T-t"><a href="#2-1-boolean-test-T-t" class="headerlink" title="2.1. boolean test(T t)"></a>2.1. boolean test(T t)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Evaluates this predicate on the given argument.</span></span><br><span class="line"><span class="comment"> * 将此断言计算于给定的参数</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> t the input argument</span></span><br><span class="line"><span class="comment"> *          输入元素</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> &#123;<span class="doctag">@code</span> true&#125; if the input argument matches the predicate,</span></span><br><span class="line"><span class="comment"> * otherwise &#123;<span class="doctag">@code</span> false&#125;</span></span><br><span class="line"><span class="comment"> * 如果输入参数匹配断言则返回true，否则返回false</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-2-default-Predicate-and-Predicate-lt-super-T-gt-other"><a href="#2-2-default-Predicate-and-Predicate-lt-super-T-gt-other" class="headerlink" title="2.2. default Predicate and(Predicate&lt;? super T&gt; other)"></a>2.2. default Predicate<t> and(Predicate&lt;? super T&gt; other)</t></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Returns a composed predicate that represents a short-circuiting logical</span></span><br><span class="line"><span class="comment"> * AND of this predicate and another.  When evaluating the composed</span></span><br><span class="line"><span class="comment"> * predicate, if this predicate is &#123;<span class="doctag">@code</span> false&#125;, then the &#123;<span class="doctag">@code</span> other&#125;</span></span><br><span class="line"><span class="comment"> * predicate is not evaluated.</span></span><br><span class="line"><span class="comment"> * 返回一个组合的断言，表示当前断言与另一个断言的短路与逻辑。</span></span><br><span class="line"><span class="comment"> * 当计算组合断言时，如果断言为false，则other断言不会求值。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;Any exceptions thrown during evaluation of either predicate are relayed</span></span><br><span class="line"><span class="comment"> * to the caller; if evaluation of this predicate throws an exception, the</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> other&#125; predicate will not be evaluated.</span></span><br><span class="line"><span class="comment"> * 在两者任意一个断言求值中抛出异常会转发给组合函数的调用者；如果当前断言求值中抛出异常，则other断言不会被求值。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> other a predicate that will be logically-ANDed with this</span></span><br><span class="line"><span class="comment"> *              predicate</span></span><br><span class="line"><span class="comment"> *              与当前断言进行逻辑与的断言</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> a composed predicate that represents the short-circuiting logical</span></span><br><span class="line"><span class="comment"> * AND of this predicate and the &#123;<span class="doctag">@code</span> other&#125; predicate</span></span><br><span class="line"><span class="comment"> * 一个组合的断言，表示当前断言和other断言的逻辑与</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> NullPointerException if other is null</span></span><br><span class="line"><span class="comment"> * 如果other为null则抛出NullPointerException</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-3-default-Predicate-negate"><a href="#2-3-default-Predicate-negate" class="headerlink" title="2.3. default Predicate negate()"></a>2.3. default Predicate<t> negate()</t></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Returns a predicate that represents the logical negation of this</span></span><br><span class="line"><span class="comment"> * predicate.</span></span><br><span class="line"><span class="comment"> * 返回一个表示当前断言否定逻辑的断言。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> a predicate that represents the logical negation of this</span></span><br><span class="line"><span class="comment"> * predicate</span></span><br><span class="line"><span class="comment"> * 一个表示当前断言否定逻辑的断言</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-4-default-Predicate-or-Predicate-lt-super-T-gt-other"><a href="#2-4-default-Predicate-or-Predicate-lt-super-T-gt-other" class="headerlink" title="2.4. default Predicate or(Predicate&lt;? super T&gt; other)"></a>2.4. default Predicate<t> or(Predicate&lt;? super T&gt; other)</t></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Returns a composed predicate that represents a short-circuiting logical</span></span><br><span class="line"><span class="comment"> * OR of this predicate and another.  When evaluating the composed</span></span><br><span class="line"><span class="comment"> * predicate, if this predicate is &#123;<span class="doctag">@code</span> true&#125;, then the &#123;<span class="doctag">@code</span> other&#125;</span></span><br><span class="line"><span class="comment"> * predicate is not evaluated.</span></span><br><span class="line"><span class="comment"> * 返回一个组合断言，表示当前断言和另一个断言的短路或逻辑。</span></span><br><span class="line"><span class="comment"> * 当计算组合断言时，如果当前断言为true，则other断言不会被求值。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;Any exceptions thrown during evaluation of either predicate are relayed</span></span><br><span class="line"><span class="comment"> * to the caller; if evaluation of this predicate throws an exception, the</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@code</span> other&#125; predicate will not be evaluated.</span></span><br><span class="line"><span class="comment"> * 两者任意一个断言求值中抛出异常会转发给组合函数的调用者；如果当前断言求值中抛出异常，则other断言不会被求值。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> other a predicate that will be logically-ORed with this</span></span><br><span class="line"><span class="comment"> *              predicate</span></span><br><span class="line"><span class="comment"> *              与当前断言进行逻辑或的断言</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> a composed predicate that represents the short-circuiting logical</span></span><br><span class="line"><span class="comment"> * OR of this predicate and the &#123;<span class="doctag">@code</span> other&#125; predicate</span></span><br><span class="line"><span class="comment"> * 一个组合断言，表示当前断言和other断言的逻辑或</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> NullPointerException if other is null</span></span><br><span class="line"><span class="comment"> * 如果other为null则抛出NullPointerException</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="2-5-static-Predicate-isEqual-Object-targetRef"><a href="#2-5-static-Predicate-isEqual-Object-targetRef" class="headerlink" title="2.5. static  Predicate isEqual(Object targetRef)"></a>2.5. static <t> Predicate<t> isEqual(Object targetRef)</t></t></h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Returns a predicate that tests if two arguments are equal according</span></span><br><span class="line"><span class="comment"> * to &#123;<span class="doctag">@link</span> Objects#equals(Object, Object)&#125;.</span></span><br><span class="line"><span class="comment"> * 返回一个断言，根据Objects#equals(Object, Object)来校验两个参数是否相等</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &lt;T&gt; the type of arguments to the predicate</span></span><br><span class="line"><span class="comment"> *           断言的参数类型</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> targetRef the object reference with which to compare for equality,</span></span><br><span class="line"><span class="comment"> *               which may be &#123;<span class="doctag">@code</span> null&#125;</span></span><br><span class="line"><span class="comment"> *                  用于比较相等对象的引用，可能为空</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> a predicate that tests if two arguments are equal according</span></span><br><span class="line"><span class="comment"> * to &#123;<span class="doctag">@link</span> Objects#equals(Object, Object)&#125;</span></span><br><span class="line"><span class="comment"> * 一个断言，根据Objects#equals(Object, Object)来校验两个参数是否相等</span></span><br><span class="line"><span class="comment"> * </span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
       
 
       
@@ -230,7 +241,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">思考</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">文档翻译</a>
         		</li>
       		
 		</ul>
@@ -242,7 +257,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="/categories/杂文//" class="article-tag-list-link color3">杂文</a>
+        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
         		</li>
       		
 		</ul>
@@ -297,7 +312,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://bshare.optimix.asia/barCode?site=weixin&url=https://yintp.github.io/2019/07/26/essay-1/" alt="微信分享二维码">
+      <img src="http://bshare.optimix.asia/barCode?site=weixin&url=https://yintp.github.io/2019/08/06/translate-java8-function-7/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -312,18 +327,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/07/27/essay-2/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          戒子书
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/07/25/translate-java8-function-3/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java8 BiConsumer翻译</div>
+    <a href="/2019/08/05/translate-java8-function-6/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java8 BiFunction翻译</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -350,7 +356,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    目录，不存在的…
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-接口"><span class="toc-number">1.</span> <span class="toc-text">1. 接口</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-方法"><span class="toc-number">2.</span> <span class="toc-text">2. 方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-boolean-test-T-t"><span class="toc-number">2.1.</span> <span class="toc-text">2.1. boolean test(T t)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-default-Predicate-and-Predicate-lt-super-T-gt-other"><span class="toc-number">2.2.</span> <span class="toc-text">2.2. default Predicate and(Predicate&lt;? super T&gt; other)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-3-default-Predicate-negate"><span class="toc-number">2.3.</span> <span class="toc-text">2.3. default Predicate negate()</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-4-default-Predicate-or-Predicate-lt-super-T-gt-other"><span class="toc-number">2.4.</span> <span class="toc-text">2.4. default Predicate or(Predicate&lt;? super T&gt; other)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-5-static-Predicate-isEqual-Object-targetRef"><span class="toc-number">2.5.</span> <span class="toc-text">2.5. static  Predicate isEqual(Object targetRef)</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
