@@ -149,6 +149,97 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-java-float-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/18/java-float-1/">Java浮点数精确问题</a>
+    </h1>
+  
+
+
+        
+
+        
+        <a href="/2019/09/18/java-float-1/" class="archive-article-date">
+  	<time datetime="2019-09-18T06:59:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>#浮点数精度的思考</p>
+<h2 id="二进制小数"><a href="#二进制小数" class="headerlink" title="二进制小数"></a>二进制小数</h2><p>十进制小数，无法用二进制的小数来精确的表达。二进制的权是2，二进制转10进制的计算方式是位的值乘以对应位的权。<br>例如：101.101二进制小数对应十进制就是，1<em>2^2+0</em>2^1+1<em>2^0+1</em>2^-1+0<em>2^-2+1</em>2^-3=4+0+1+0.5+0+0.125=5.625。<br>从上面的计算我们可以发现，二进制只能用1/(2^n)之和来表达十进制的小数。例如：十进制的0.2用二进制大致表示就是，1/8+1/16+1/128+1/256=0.00110011=0.19921875。<br>可以看到已经非常接近，理论上讲二进制表示的小数可以无限接近或等于十进制的小数。</p>
+<h2 id="Java中Float浮点数"><a href="#Java中Float浮点数" class="headerlink" title="Java中Float浮点数"></a>Java中Float浮点数</h2><p>在计算机中为了存储一个小数不可能提供无限的空间。它需要规定长度，在Java中，Float浮点数的存储空间是4个字节，遵循的是IEEE754表示法。<br>在Float中有个floatToRawIntBits方法获取浮点数的内部表示。例如：Float.floatToRawIntBits(0.09f)，得到十进制的1035489772，转换成二进制<br>111101101110000101000111101100。格式化成IEEE754表示法就是：0 01111011 01110000101000111101100，计算下结果就是：1.01110000101000111101100<em>2^(123-127)<br>=1.01110000101000111101100</em>2^(-4)=0.000101110000101000111101100=1/16+1/64+1/128+1/256+…=0.0900000035762786865234375</p>
+<h2 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h2><p>由于浮点数表示的“不精确性”，对于精确度要求高的计算可能得不到你期望的结果。</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/18/java-float-1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-algorithms-search-3" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -178,12 +269,7 @@
 <h2 id="分析"><a href="#分析" class="headerlink" title="分析"></a>分析</h2><blockquote>
 <p>假设一个数组中有n个元素，最好的情况就是要寻找的特定值就是数组里的第一个元素，这样仅需要1次比较就可以。而最坏的情况是要寻找的特定值不在这个数组或者<br>是数组里的最后一个元素，这就需要进行n次比较。</p>
 </blockquote>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 顺序搜索法</span><br><span class="line"> * @param arr int数组</span><br><span class="line"> * @param value 查找的值</span><br><span class="line"> * @return 在数组中的位置</span><br><span class="line"> */</span><br><span class="line">public static int sequenceSearch(final int[] arr, int value) &#123;</span><br><span class="line">	for (int i = 0; i &lt; arr.length; i++) &#123;</span><br><span class="line">		if (arr[i] == value) &#123;</span><br><span class="line">			return i;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return -1;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>引用自维基百科</p>
-</blockquote>
-
+        
       
 
       
@@ -196,11 +282,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -281,17 +367,7 @@
         <h1 id="插入搜索算法"><a href="#插入搜索算法" class="headerlink" title="插入搜索算法"></a>插入搜索算法</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><blockquote>
 <p>插值搜索是一种算法，用于在一个索引数组中搜索给定的键，该数组是由分配给键（键值）的数值所排序的。它与人类在电话簿中搜索特定名字的方式有相似之处，这是<br>图书条目被排序的关键值。在每个搜索步骤中，它根据搜索空间边界的键值和所寻找的键的值，计算出所寻找的条目在剩余搜索空间中的位置，通常是通过一个线性插值。<br>在这个估计的位置上实际发现的键值与正在寻找的键值进行比较。如果它不相等，那么根据比较，剩下的搜索空间就会减少到估计位置之前或之后的部分。只有在关键值之<br>间的差异大小的计算是合理的，则此方法仅适用。<br>相比之下，二分搜索总是选择剩余搜索空间的中间，丢弃一半或另一半，这取决于在估计位置处找到的关键字与所寻求的关键字之间的比较 - 它不需要关键字的数值，只<br>是一个全序。剩余的搜索空间被缩小到估计位置之前或之后的部分。而顺序搜索是均等的，仅因为它比较元件一个接一个的从一开始，忽略任何排序。</p>
 </blockquote>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><blockquote>
-<p>对于数据量较大而分布又较均匀的数组来说，插值查找算法的平均性能比二分查找要优。</p>
-</blockquote>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 递归循环插入查找法</span><br><span class="line"> * @param arr 升序int数组</span><br><span class="line"> * @param value 查找的值</span><br><span class="line"> * @return 在数组中的位置</span><br><span class="line"> */</span><br><span class="line">public static int insertionSearch(final int[] arr, int value) &#123;</span><br><span class="line">	return insertionSearch(arr, 0, arr.length - 1, value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 递归</span><br><span class="line"> * @param arr 升序int数组</span><br><span class="line"> * @param start 查找的起始位置</span><br><span class="line"> * @param end 查找的结束位置</span><br><span class="line"> * @param value 查找的值</span><br><span class="line"> * @return 在数组中的位置</span><br><span class="line"> */</span><br><span class="line">private static int insertionSearch(final int[] arr, int start, int end, int value) &#123;</span><br><span class="line">	if (start &gt; end) &#123;</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line">	if (arr[start] != arr[end] &amp;&amp; value &gt;= arr[start] &amp;&amp; value &lt;= arr[end]) &#123;</span><br><span class="line">		int mid = start + ((value - arr[start]) * (end - start) / (arr[end] - arr[start]));</span><br><span class="line">		if (value &lt; arr[mid]) &#123;</span><br><span class="line">			return insertionSearch(arr, start, mid - 1, value);</span><br><span class="line">		&#125; else if(value &gt; arr[mid]) &#123;</span><br><span class="line">			return insertionSearch(arr, mid + 1, end, value);</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			return mid;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	if(value == arr[start]) &#123;</span><br><span class="line">		return start;</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * while循环插入查找法</span><br><span class="line"> * @param arr 升序int数组</span><br><span class="line"> * @param value 查找的值</span><br><span class="line"> * @return 在数组中的位置</span><br><span class="line"> */</span><br><span class="line">public static int insertionSearch2(final int[] arr, int value) &#123;</span><br><span class="line">	int start = 0;</span><br><span class="line">	int end = arr.length - 1;</span><br><span class="line">	int mid;</span><br><span class="line">	while (arr[start] != arr[end] &amp;&amp; value &gt;= arr[start] &amp;&amp; value &lt;= arr[end]) &#123;</span><br><span class="line">		mid = start + ((value - arr[start]) * (end - start) / (arr[end] - arr[start]));</span><br><span class="line">		if (value &lt; arr[mid]) &#123;</span><br><span class="line">			end = mid - 1;</span><br><span class="line">		&#125; else if (value &gt; arr[mid]) &#123;</span><br><span class="line">			start = mid + 1;</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			return mid;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	if(value == arr[start]) &#123;</span><br><span class="line">		return start;</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>引用自维基百科</p>
-</blockquote>
-
+        
       
 
       
@@ -304,11 +380,11 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
@@ -389,28 +465,7 @@
         <h1 id="二分搜索算法"><a href="#二分搜索算法" class="headerlink" title="二分搜索算法"></a>二分搜索算法</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><blockquote>
 <p>在计算机科学中，二分搜索（英语：binary search），也称折半搜索（英语：half-interval search）、对数搜索（英语：logarithmic search），是一<br>种在有序数组中查找某一特定元素的搜索算法。搜索过程从数组的中间元素开始，如果中间元素正好是要查找的元素，则搜索过程结束；如果某一特定元素大于或者小于中<br>间元素，则在数组大于或小于中间元素的那一半中查找，而且跟开始一样从中间元素开始比较。如果在某一步骤数组为空，则代表找不到。这种搜索算法每一次比较都使搜<br>索范围缩小一半。</p>
 </blockquote>
-<h2 id="步骤"><a href="#步骤" class="headerlink" title="步骤"></a>步骤</h2><blockquote>
-<p>给予一个包含n个带值元素的数组A或是记录A0,…,An-1，使A0&lt;=…&lt;=An-1，以及目标值T，还有下列用来搜索T在A中位置的子程序。</p>
-<ol>
-<li>令L为0，R为n-1。</li>
-<li>如果L&gt;R，则搜索以失败告终。</li>
-<li>令m（中间值元素）为 (L+R)/2。</li>
-<li>如果m&lt;T，令L为m+1并回到步骤二。</li>
-<li>如果 m&gt;T，令 R为 m-1并回到步骤二。</li>
-<li>当 Am=T，搜索结束；回传值m。<br>这个迭代步骤会持续通过两个变量追踪搜索的边界。有些实际应用会在算法的最后放入相等比较，让比较循环更快，但平均而言会多一层迭代。</li>
-</ol>
-</blockquote>
-<h2 id="注意"><a href="#注意" class="headerlink" title="注意"></a>注意</h2><blockquote>
-<p>折半查找的前提条件是需要有序表顺序存储，对于静态查找表，一次排序后不再变化，折半查找能得到不错的效率。但对于需要频繁执行插入或删除操作的数据集来说，<br>维护有序的排序会带来不小的工作量，那就不建议使用。</p>
-</blockquote>
-<h2 id="java代码"><a href="#java代码" class="headerlink" title="java代码"></a>java代码</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 递归二分查找法</span><br><span class="line"> * @param arr 升序int数组</span><br><span class="line"> * @param value 查找的值</span><br><span class="line"> * @return 在数组中的位置</span><br><span class="line"> */</span><br><span class="line">public static int binarySearch(final int[] arr, int value) &#123;</span><br><span class="line">	return binarySearch(arr, 0, arr.length - 1, value);</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * 递归</span><br><span class="line"> * @param arr 升序int数组</span><br><span class="line"> * @param start 查找的起始位置</span><br><span class="line"> * @param end 查找的结束位置</span><br><span class="line"> * @param value 查找的值</span><br><span class="line"> * @return 在数组中的位置</span><br><span class="line"> */</span><br><span class="line">private static int binarySearch(final int[] arr, int start, int end, int value) &#123;</span><br><span class="line">	if (start &gt; end) &#123;</span><br><span class="line">		return -1;</span><br><span class="line">	&#125;</span><br><span class="line">	int mid = start + (end - start) / 2;</span><br><span class="line">	if (value &lt; arr[mid]) &#123;</span><br><span class="line">		return binary_search(arr, start, mid - 1, value);</span><br><span class="line">	&#125; else if(value &gt; arr[mid]) &#123;</span><br><span class="line">		return binary_search(arr, mid + 1, end, value);</span><br><span class="line">	&#125; else &#123;</span><br><span class="line">		return mid;</span><br><span class="line">	&#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * while循环二分查找法</span><br><span class="line"> * @param arr 升序int数组</span><br><span class="line"> * @param value 查找的值</span><br><span class="line"> * @return 在数组中的位置</span><br><span class="line"> */</span><br><span class="line">public static int binarySearch2(final int[] arr, int value) &#123;</span><br><span class="line">	int result = -1;</span><br><span class="line">	int start = 0;</span><br><span class="line">    int end = arr.length - 1;</span><br><span class="line">	int mid;</span><br><span class="line">	while (start &lt;= end) &#123;</span><br><span class="line">		mid = start + (end - start) / 2;</span><br><span class="line">		if (value &lt; arr[mid]) &#123;</span><br><span class="line">			end = mid - 1;</span><br><span class="line">		&#125; else if (value &gt; arr[mid]) &#123;</span><br><span class="line">			start = mid + 1;</span><br><span class="line">		&#125; else &#123;</span><br><span class="line">			result = mid;</span><br><span class="line">			break;</span><br><span class="line">		&#125;</span><br><span class="line">	&#125;</span><br><span class="line">	return result;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<blockquote>
-<p>引用自维基百科、《大话数据结构》</p>
-</blockquote>
-
+        
       
 
       
@@ -423,15 +478,15 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
         			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">二分查找法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
         		</li>
       		
 		</ul>
@@ -1046,100 +1101,6 @@
 
 
   
-    <article id="post-translate-java8-function-13" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/08/27/translate-java8-function-13/">Java8 DoubleConsumer翻译</a>
-    </h1>
-  
-
-
-        
-
-        
-        <a href="/2019/08/27/translate-java8-function-13/" class="archive-article-date">
-  	<time datetime="2019-08-27T09:38:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-27</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="1-接口"><a href="#1-接口" class="headerlink" title="1. 接口"></a>1. 接口</h1><ul>
-<li>DoubleConsumer接口源码翻译，位于java.util.function包下。</li>
-</ul>
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">文档翻译</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/08/27/translate-java8-function-13/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
@@ -1250,22 +1211,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">思考</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Java</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">时间</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">文档翻译</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
@@ -1274,11 +1219,27 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">插入查找法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">顺序查找算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">思考</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">文档翻译</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">时间</a>
               </li>
             
             <div class="clearfix"></div>
