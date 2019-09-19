@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="yintp&#39;s blog">
 <meta property="og:description" content="1. 接口 DoubleUnaryOperator接口源码翻译，位于java.util.function包下。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-09-09T08:27:40.883Z">
+<meta property="og:updated_time" content="2019-09-18T09:54:01.163Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Java8 DoubleUnaryOperator翻译">
 <meta name="twitter:description" content="1. 接口 DoubleUnaryOperator接口源码翻译，位于java.util.function包下。">
@@ -189,7 +189,7 @@
 
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Represents an operation on a single &#123;<span class="doctag">@code</span> double&#125;-valued operand that produces</span></span><br><span class="line"><span class="comment"> * a &#123;<span class="doctag">@code</span> double&#125;-valued result.  This is the primitive type specialization of</span></span><br><span class="line"><span class="comment"> * &#123;<span class="doctag">@link</span> UnaryOperator&#125; for &#123;<span class="doctag">@code</span> double&#125;.</span></span><br><span class="line"><span class="comment"> * 表示一个基于单个double操作数产生一个double结果的操作。</span></span><br><span class="line"><span class="comment"> * 这是double针对UnaryOperator的原生特化。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;This is a &lt;a href="package-summary.html"&gt;functional interface&lt;/a&gt;</span></span><br><span class="line"><span class="comment"> * whose functional method is &#123;<span class="doctag">@link</span> #applyAsDouble(double)&#125;.</span></span><br><span class="line"><span class="comment"> * 这是一个函数方法为applyAsDouble的函数式接口。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span> UnaryOperator</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 1.8</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="2-方法"><a href="#2-方法" class="headerlink" title="2. 方法"></a>2. 方法</h1><h2 id="2-1-double-applyAsDouble-double-operand"><a href="#2-1-double-applyAsDouble-double-operand" class="headerlink" title="2.1. double applyAsDouble(double operand)"></a>2.1. double applyAsDouble(double operand)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Applies this operator to the given operand.</span></span><br><span class="line"><span class="comment"> * 将给定的操作数应用到此操作</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> operand the operand</span></span><br><span class="line"><span class="comment"> *                操作数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> the operator result</span></span><br><span class="line"><span class="comment"> * 操作结果</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<h1 id="2-方法"><a href="#2-方法" class="headerlink" title="2. 方法"></a>2. 方法</h1><h2 id="2-1-double-applyAsDouble-double-operand"><a href="#2-1-double-applyAsDouble-double-operand" class="headerlink" title="2.1. double applyAsDouble(double operand)"></a>2.1. double applyAsDouble(double operand)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Applies this operator to the given operand.</span></span><br><span class="line"><span class="comment"> * 将给定的操作数应用到此操作。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> operand the operand</span></span><br><span class="line"><span class="comment"> *                操作数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> the operator result</span></span><br><span class="line"><span class="comment"> * 操作结果</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
       
 
       
@@ -486,7 +486,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">二分查找法</a>
+                <a href="javascript:void(0)" class="js-tag color1">插入查找法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -494,7 +494,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">插入查找法</a>
+                <a href="javascript:void(0)" class="js-tag color1">二分查找法</a>
               </li>
              
               <li class="article-tag-list-item">
