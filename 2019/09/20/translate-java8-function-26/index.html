@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://yintp.github.io">
-  <title>Java8 BiConsumer翻译 | yintp&#39;s blog</title>
+  <title>Java8 IntToLongFunction翻译 | yintp&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 接口 BiConsumer接口源码翻译，位于java.util.function包下。">
+  <meta name="description" content="1. 接口 IntToLongFunction接口源码翻译，位于java.util.function包下。">
 <meta name="keywords" content="Java,文档翻译">
 <meta property="og:type" content="article">
-<meta property="og:title" content="Java8 BiConsumer翻译">
-<meta property="og:url" content="https://yintp.github.io/2019/07/25/translate-java8-function-3/index.html">
+<meta property="og:title" content="Java8 IntToLongFunction翻译">
+<meta property="og:url" content="https://yintp.github.io/2019/09/20/translate-java8-function-26/index.html">
 <meta property="og:site_name" content="yintp&#39;s blog">
-<meta property="og:description" content="1. 接口 BiConsumer接口源码翻译，位于java.util.function包下。">
+<meta property="og:description" content="1. 接口 IntToLongFunction接口源码翻译，位于java.util.function包下。">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-08-01T08:34:45.487Z">
+<meta property="og:updated_time" content="2019-09-20T08:30:35.700Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Java8 BiConsumer翻译">
-<meta name="twitter:description" content="1. 接口 BiConsumer接口源码翻译，位于java.util.function包下。">
+<meta name="twitter:title" content="Java8 IntToLongFunction翻译">
+<meta name="twitter:description" content="1. 接口 IntToLongFunction接口源码翻译，位于java.util.function包下。">
   
     <link rel="alternative" href="/atom.xml" title="yintp&#39;s blog" type="application/atom+xml">
   
@@ -151,14 +151,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-translate-java8-function-3" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-translate-java8-function-26" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      Java8 BiConsumer翻译
+      Java8 IntToLongFunction翻译
     </h1>
   
 
@@ -174,8 +174,8 @@
         
 
         
-        <a href="/2019/07/25/translate-java8-function-3/" class="archive-article-date">
-  	<time datetime="2019-07-25T06:02:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-25</time>
+        <a href="/2019/09/20/translate-java8-function-26/" class="archive-article-date">
+  	<time datetime="2019-09-20T08:25:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-20</time>
 </a>
         
       </header>
@@ -183,15 +183,13 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="1-接口"><a href="#1-接口" class="headerlink" title="1. 接口"></a>1. 接口</h1><ul>
-<li>BiConsumer接口源码翻译，位于java.util.function包下。</li>
+<li>IntToLongFunction接口源码翻译，位于java.util.function包下。</li>
 </ul>
 <a id="more"></a>
 
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Represents an operation that accepts two input arguments and returns no</span></span><br><span class="line"><span class="comment"> * result.  This is the two-arity specialization of &#123;<span class="doctag">@link</span> Consumer&#125;.</span></span><br><span class="line"><span class="comment"> * Unlike most other functional interfaces, &#123;<span class="doctag">@code</span> BiConsumer&#125; is expected</span></span><br><span class="line"><span class="comment"> * to operate via side-effects.</span></span><br><span class="line"><span class="comment"> * 表示一个接收两个入参并无返回值的操作。这是特殊Consumer二元函数，与大多数其它函数式接口不同，Consumer是预期借助一个“副作用”来操作。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;This is a &lt;a href="package-summary.html"&gt;functional interface&lt;/a&gt;</span></span><br><span class="line"><span class="comment"> * whose functional method is &#123;<span class="doctag">@link</span> #accept(Object, Object)&#125;.</span></span><br><span class="line"><span class="comment"> * 这是一个函数式方法为accept函数式接口</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &lt;T&gt; the type of the first argument to the operation</span></span><br><span class="line"><span class="comment"> *           操作的第一个参数类型类型</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> &lt;U&gt; the type of the second argument to the operation</span></span><br><span class="line"><span class="comment"> *           操作的第二个参数类型类型</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span> Consumer</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 1.8</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Represents a function that accepts an int-valued argument and produces a</span></span><br><span class="line"><span class="comment"> * long-valued result.  This is the &#123;<span class="doctag">@code</span> int&#125;-to-&#123;<span class="doctag">@code</span> long&#125; primitive</span></span><br><span class="line"><span class="comment"> * specialization for &#123;<span class="doctag">@link</span> Function&#125;.</span></span><br><span class="line"><span class="comment"> * 表示一个函数，接收一个int值参数并且产生一个long值结果。</span></span><br><span class="line"><span class="comment"> * 这是一个int到long原生特化Function。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * &lt;p&gt;This is a &lt;a href="package-summary.html"&gt;functional interface&lt;/a&gt;</span></span><br><span class="line"><span class="comment"> * whose functional method is &#123;<span class="doctag">@link</span> #applyAsLong(int)&#125;.</span></span><br><span class="line"><span class="comment"> * 这是一个函数方法为applyAsLong(int)的函数式接口</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@see</span> Function</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@since</span> 1.8</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
 
-<h1 id="2-方法"><a href="#2-方法" class="headerlink" title="2. 方法"></a>2. 方法</h1><h2 id="2-1-void-accept-T-t-U-u"><a href="#2-1-void-accept-T-t-U-u" class="headerlink" title="2.1 void accept(T t, U u)"></a>2.1 void accept(T t, U u)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Performs this operation on the given arguments.</span></span><br><span class="line"><span class="comment"> * 对给定的参数执行此操作</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> t the first input argument</span></span><br><span class="line"><span class="comment"> *          第一个入参</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> u the second input argument</span></span><br><span class="line"><span class="comment"> *          第二个入参</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-
-<h2 id="2-2-default-BiConsumer-lt-T-U-gt-andThen-BiConsumer-lt-super-T-super-U-gt-after"><a href="#2-2-default-BiConsumer-lt-T-U-gt-andThen-BiConsumer-lt-super-T-super-U-gt-after" class="headerlink" title="2.2 default BiConsumer&lt;T, U&gt; andThen(BiConsumer&lt;? super T, ? super U&gt; after)"></a>2.2 default BiConsumer&lt;T, U&gt; andThen(BiConsumer&lt;? super T, ? super U&gt; after)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Returns a composed &#123;<span class="doctag">@code</span> BiConsumer&#125; that performs, in sequence, this</span></span><br><span class="line"><span class="comment"> * operation followed by the &#123;<span class="doctag">@code</span> after&#125; operation. If performing either</span></span><br><span class="line"><span class="comment"> * operation throws an exception, it is relayed to the caller of the</span></span><br><span class="line"><span class="comment"> * composed operation.  If performing this operation throws an exception,</span></span><br><span class="line"><span class="comment"> * the &#123;<span class="doctag">@code</span> after&#125; operation will not be performed.</span></span><br><span class="line"><span class="comment"> * 返回一个组合BiConsumer操作`，顺序执行，先执行此操作后面跟着after操作。</span></span><br><span class="line"><span class="comment"> * 如果执行任意操作抛出异常，异常将会转发给组合操作的调用者。</span></span><br><span class="line"><span class="comment"> * 如果执行此操作抛出异常，则after操作将不会被执行。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> after the operation to perform after this operation</span></span><br><span class="line"><span class="comment"> *              此操作后执行的操作</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> a composed &#123;<span class="doctag">@code</span> BiConsumer&#125; that performs in sequence this</span></span><br><span class="line"><span class="comment"> * operation followed by the &#123;<span class="doctag">@code</span> after&#125; operation</span></span><br><span class="line"><span class="comment"> * 一个组合BiConsumer操作，按顺序执行此操作后跟着执行after操作。</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@throws</span> NullPointerException if &#123;<span class="doctag">@code</span> after&#125; is null</span></span><br><span class="line"><span class="comment"> * 如果after参数为空则抛出NullPointerException异常</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+<h1 id="2-方法"><a href="#2-方法" class="headerlink" title="2. 方法"></a>2. 方法</h1><h2 id="2-1-long-applyAsLong-int-value"><a href="#2-1-long-applyAsLong-int-value" class="headerlink" title="2.1. long applyAsLong(int value)"></a>2.1. long applyAsLong(int value)</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="comment">/**</span></span><br><span class="line"><span class="comment"> * Applies this function to the given argument.</span></span><br><span class="line"><span class="comment"> * 将给定的参数应用到此函数。</span></span><br><span class="line"><span class="comment"> *</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@param</span> value the function argument</span></span><br><span class="line"><span class="comment"> *              函数参数</span></span><br><span class="line"><span class="comment"> * <span class="doctag">@return</span> the function result</span></span><br><span class="line"><span class="comment"> * 函数结果</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
       
 
       
@@ -306,7 +304,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://bshare.optimix.asia/barCode?site=weixin&url=https://yintp.github.io/2019/07/25/translate-java8-function-3/" alt="微信分享二维码">
+      <img src="http://bshare.optimix.asia/barCode?site=weixin&url=https://yintp.github.io/2019/09/20/translate-java8-function-26/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -321,18 +319,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/07/26/essay-1/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/09/20/translate-java8-function-27/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          威斯敏斯特教堂边的墓志铭
+          Java8 IntUnaryOperator翻译
         
       </div>
     </a>
   
   
-    <a href="/2019/07/24/translate-java8-function-2/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">Java8 Consumer翻译</div>
+    <a href="/2019/09/20/translate-java8-function-25/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java8 IntToDoubleFunction翻译</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -359,7 +357,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-接口"><span class="toc-number">1.</span> <span class="toc-text">1. 接口</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-方法"><span class="toc-number">2.</span> <span class="toc-text">2. 方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-void-accept-T-t-U-u"><span class="toc-number">2.1.</span> <span class="toc-text">2.1 void accept(T t, U u)</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2-2-default-BiConsumer-lt-T-U-gt-andThen-BiConsumer-lt-super-T-super-U-gt-after"><span class="toc-number">2.2.</span> <span class="toc-text">2.2 default BiConsumer&lt;T, U&gt; andThen(BiConsumer&lt;? super T, ? super U&gt; after)</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-接口"><span class="toc-number">1.</span> <span class="toc-text">1. 接口</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-方法"><span class="toc-number">2.</span> <span class="toc-text">2. 方法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#2-1-long-applyAsLong-int-value"><span class="toc-number">2.1.</span> <span class="toc-text">2.1. long applyAsLong(int value)</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>
