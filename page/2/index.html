@@ -149,6 +149,108 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-java-jfinal-1" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2017/02/20/java-jfinal-1/">Jfinal自定义实现getModels方法</a>
+    </h1>
+  
+
+
+        
+
+        
+        <a href="/2017/02/20/java-jfinal-1/" class="archive-article-date">
+  	<time datetime="2017-02-20T06:57:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2017-02-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>本人在项目中需要从页面传一个明细列表到后台保存，由于jfinal目前还没有页面映射model列表的方法，所以把它分享给大家：</p>
+<p>1、com.jfinal.core中的Controller：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @description:获取model列表</span><br><span class="line"> * @param modelClass model的class</span><br><span class="line"> * @return List&lt;T&gt; 返回的model列表</span><br><span class="line"> * @author: yintp</span><br><span class="line"> * @createTime: 2017年2月14日 上午10:44:20</span><br><span class="line"> */</span><br><span class="line">public &lt;T&gt; List&lt;T&gt; getModels(Class&lt;T&gt; modelClass)</span><br><span class="line">&#123;</span><br><span class="line">    List&lt;T&gt; modelList = new ArrayList&lt;T&gt;();</span><br><span class="line">    int size = getLargeIndex(request.getParameterMap());</span><br><span class="line">    for (int i = 0; i &lt;= size; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        T model = getModel(modelClass, StrKit.firstCharToLowerCase(modelClass.getSimpleName()) + &quot;[&quot; + i + &quot;]&quot;);</span><br><span class="line">        if (!modelIsEmpty(model))</span><br><span class="line">        &#123;</span><br><span class="line">            modelList.add(model);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return modelList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @description:返回多个model列表的最大索引下标值</span><br><span class="line"> * @param map 参数map</span><br><span class="line"> * @return int 最大索引下标值,参数map为空时返回0</span><br><span class="line"> * @author: yintp</span><br><span class="line"> * @createTime: 2017年2月20日 上午9:54:53</span><br><span class="line"> */</span><br><span class="line">private int getLargeIndex(Map&lt;String, String[]&gt; map)</span><br><span class="line">&#123;</span><br><span class="line">    int max = 0;</span><br><span class="line">    if (map != null)</span><br><span class="line">    &#123;</span><br><span class="line">        String reg = &quot;[^0-9]&quot;;</span><br><span class="line">        Pattern p = Pattern.compile(reg);</span><br><span class="line">        for (String key : map.keySet())</span><br><span class="line">        &#123;</span><br><span class="line">            Matcher m = p.matcher(key);</span><br><span class="line">            String num = m.replaceAll(&quot;&quot;).trim();</span><br><span class="line">            int index = parseInt(num);</span><br><span class="line">            if(index &gt; max)</span><br><span class="line">            &#123;</span><br><span class="line">                max = index;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @description:判断model对象是否为空</span><br><span class="line"> * @param model model对象</span><br><span class="line"> * @return model为空时返回true,否则返回false</span><br><span class="line"> * @author: yintp</span><br><span class="line"> * @createTime: 2017年2月20日 上午11:50:10</span><br><span class="line"> */</span><br><span class="line">private boolean modelIsEmpty(Object model)</span><br><span class="line">&#123;</span><br><span class="line">    if (model == null)</span><br><span class="line">    &#123;</span><br><span class="line">        return true;</span><br><span class="line">    &#125;</span><br><span class="line">    if (model instanceof Model)</span><br><span class="line">    &#123;</span><br><span class="line">        Model m = (Model) model;</span><br><span class="line">        return m.isEmpty();</span><br><span class="line">    &#125;</span><br><span class="line">    else</span><br><span class="line">    &#123;</span><br><span class="line">        return commonModelIsEmpty(model);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @description:校验JavaBean的全部字段值是否为空</span><br><span class="line"> * @return boolean 全部为空则返回true</span><br><span class="line"> * @author: yintp</span><br><span class="line"> * @createTime: 2017年2月20日 上午11:03:04</span><br><span class="line"> */</span><br><span class="line">private boolean commonModelIsEmpty(Object model)</span><br><span class="line">&#123;</span><br><span class="line">    for (Field field : model.getClass().getDeclaredFields())</span><br><span class="line">    &#123;</span><br><span class="line">        field.setAccessible(true);</span><br><span class="line">        if (!&quot;serialVersionUID&quot;.equals(field.getName()))</span><br><span class="line">        &#123;</span><br><span class="line">            try</span><br><span class="line">            &#123;</span><br><span class="line">                if (field.get(model) != null)</span><br><span class="line">                &#123;</span><br><span class="line">                    return false;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            catch (Exception e)</span><br><span class="line">            &#123;</span><br><span class="line">                throw new RuntimeException(e);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>2、com.jfinal.plugin.activerecord中的Model：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @description:判断Model的attrs的value是否全部为空</span><br><span class="line"> * @return boolean attrs全部是空则返回true,否则返回false</span><br><span class="line"> * @author: yintp</span><br><span class="line"> * @createTime: 2017年2月18日 上午11:01:13</span><br><span class="line"> */</span><br><span class="line">public boolean isEmpty()</span><br><span class="line">&#123;</span><br><span class="line">    for (Entry&lt;String, Object&gt; entry : attrs.entrySet())</span><br><span class="line">    &#123;</span><br><span class="line">        if (entry.getValue() != null)</span><br><span class="line">        &#123;</span><br><span class="line">            return false;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return true;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>3、页面</p>
+<p>页面中只需要传多个XXX[index].xxx就行。比如下面的：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * 添加联系人表格行</span><br><span class="line"> * isdefault 是否是默认添加操作，true为默认添加</span><br><span class="line"> */</span><br><span class="line">function addContact(isdefault)&#123;</span><br><span class="line">	var count = $(&quot;#tb_div tr&quot;).last().find(&quot;.index&quot;).val();</span><br><span class="line">	if (!count)</span><br><span class="line">	&#123;</span><br><span class="line">		count = 0;</span><br><span class="line">	&#125;</span><br><span class="line">	if(!isdefault)&#123;</span><br><span class="line">		count++;</span><br><span class="line">	&#125; </span><br><span class="line">	var selectHtml = getSelectHtml(contactList,null);</span><br><span class="line">	var trHtml = &apos;&apos;;</span><br><span class="line">	trHtml +=&apos;	&lt;tr&gt;&apos;;</span><br><span class="line">	trHtml +=&apos;		&lt;td&gt;&lt;input class=&quot;index reset&quot; type=&quot;hidden&quot; name=&quot;count&quot; value=&quot;&apos;+count+&apos;&quot;&gt;&lt;input class=&quot;reset&quot; type=&quot;text&quot; name=&quot;contact[&apos;+count+&apos;].name&quot; value=&quot;&quot; maxlength=&quot;50&quot; vMin=&quot;1&quot; vType=&quot;length&quot; vScopes=&quot;input&quot; onblur=&quot;onblurVali(this);&quot;/&gt;&lt;/td&gt;&apos;;</span><br><span class="line">	trHtml +=&apos;		&lt;td&gt;&lt;input class=&quot;reset&quot; type=&quot;text&quot; name=&quot;contact[&apos;+count+&apos;].sex&quot; value=&quot;&quot; maxlength=&quot;10&quot; vMin=&quot;1&quot; vType=&quot;length&quot; vScopes=&quot;input&quot; onblur=&quot;onblurVali(this);&quot;/&gt;&lt;/td&gt;&apos;;</span><br><span class="line">	trHtml +=&apos;		&lt;td&gt;&lt;input class=&quot;reset&quot; type=&quot;text&quot; name=&quot;contact[&apos;+count+&apos;].phone&quot; value=&quot;&quot; maxlength=&quot;50&quot; vMin=&quot;1&quot; vType=&quot;length&quot; vScopes=&quot;input&quot; onblur=&quot;onblurVali(this);&quot;/&gt;&lt;/td&gt;&apos;;</span><br><span class="line">	trHtml +=&apos;		&lt;td&gt;&lt;input class=&quot;reset&quot; type=&quot;text&quot; name=&quot;contact[&apos;+count+&apos;].cardtype&quot; value=&quot;&quot; maxlength=&quot;10&quot; vMin=&quot;1&quot; vType=&quot;length&quot; vScopes=&quot;input&quot; onblur=&quot;onblurVali(this);&quot;/&gt;&lt;/td&gt;&apos;;</span><br><span class="line">	trHtml +=&apos;		&lt;td&gt;&lt;input class=&quot;reset&quot; type=&quot;text&quot; name=&quot;contact[&apos;+count+&apos;].cardcode&quot; value=&quot;&quot; maxlength=&quot;50&quot; vMin=&quot;1&quot; vType=&quot;length&quot; vScopes=&quot;input&quot; onblur=&quot;onblurVali(this);&quot;/&gt;&lt;/td&gt;&apos;;</span><br><span class="line">	trHtml +=&apos;		&lt;td&gt;&lt;input class=&quot;reset&quot; type=&quot;text&quot; name=&quot;contact[&apos;+count+&apos;].address&quot; value=&quot;&quot; maxlength=&quot;100&quot; vMin=&quot;1&quot; vType=&quot;length&quot; vScopes=&quot;input&quot; onblur=&quot;onblurVali(this);&quot;/&gt;&lt;/td&gt;&apos;;</span><br><span class="line">	trHtml +=&apos;		&lt;td&gt;&lt;input class=&quot;reset&quot; type=&quot;text&quot; name=&quot;contact[&apos;+count+&apos;].remark&quot; value=&quot;&quot; maxlength=&quot;100&quot;/&gt;&lt;/td&gt;&apos;;</span><br><span class="line">	trHtml +=&apos;		&lt;td&gt;&lt;select class=&quot;reset&quot; type=&quot;text&quot; name=&quot;contact[&apos;+count+&apos;].parentids&quot;&gt;&apos;;</span><br><span class="line">	trHtml += selectHtml;</span><br><span class="line">	trHtml +=&apos;		&lt;/select&gt;&lt;/td&gt;&apos;;</span><br><span class="line">	trHtml +=&apos;		&lt;td&gt;&lt;input class=&quot;reset single&quot; type=&quot;hidden&quot; name=&quot;contact[&apos;+count+&apos;].isdefault&quot; value=&quot;0&quot;&gt;&lt;input class=&quot;reset&quot; type=&quot;radio&quot; name=&quot;isdefault&quot;&apos;;</span><br><span class="line">	if(isdefault)&#123;</span><br><span class="line">		trHtml +=&apos; 			checked=&quot;checked&quot;&apos;;</span><br><span class="line">	&#125;</span><br><span class="line">	trHtml +=&apos;		/&gt;&lt;/td&gt;&apos;;</span><br><span class="line">	trHtml +=&apos;		&lt;td&gt;&lt;a onclick=&quot;removeContact(this);&quot; class=&quot;btn btn-round&quot; title=&quot;删除联系人&quot;&gt;&lt;i class=&quot;icon-minus&quot;&gt;&lt;/i&gt;&lt;/a&gt;&lt;/td&gt;&apos;;</span><br><span class="line">	trHtml +=&apos;	&lt;/tr&gt;&apos;;</span><br><span class="line">	$(&quot;#tb_div&quot;).append(trHtml);</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+	<div class="article-category tagcloud">
+		<i class="icon-book icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2017/02/20/java-jfinal-1/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-java-h5-2" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -481,6 +583,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">思考</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">Git</a>
               </li>
              
               <li class="article-tag-list-item">

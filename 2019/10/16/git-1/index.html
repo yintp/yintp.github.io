@@ -6,16 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://yintp.github.io">
-  <title>Archives | yintp&#39;s blog</title>
+  <title>常用git命令 | yintp&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="keywords" content="后端,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Java,Developer,Programmer,Coder,Geek">
-<meta property="og:type" content="website">
-<meta property="og:title" content="yintp&#39;s blog">
-<meta property="og:url" content="https://yintp.github.io/archives/index.html">
+  <meta name="description" content="1. 查看提交历史git log –oneline –graphgit log –graph –pretty=format:’%h | %an %cd | %s’ –date=format:’%Y-%m-%d %H:%M’ 2. 撤销合并git merge –abort 3. 查看差异 工作区和暂存区的区别：git diff 工作区和版本库的区别：git diff HEAD 暂存区和版本库的区别：">
+<meta name="keywords" content="Git">
+<meta property="og:type" content="article">
+<meta property="og:title" content="常用git命令">
+<meta property="og:url" content="https://yintp.github.io/2019/10/16/git-1/index.html">
 <meta property="og:site_name" content="yintp&#39;s blog">
+<meta property="og:description" content="1. 查看提交历史git log –oneline –graphgit log –graph –pretty=format:’%h | %an %cd | %s’ –date=format:’%Y-%m-%d %H:%M’ 2. 撤销合并git merge –abort 3. 查看差异 工作区和暂存区的区别：git diff 工作区和版本库的区别：git diff HEAD 暂存区和版本库的区别：">
 <meta property="og:locale" content="zh-CN">
+<meta property="og:updated_time" content="2019-10-16T09:30:50.285Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="yintp&#39;s blog">
+<meta name="twitter:title" content="常用git命令">
+<meta name="twitter:description" content="1. 查看提交历史git log –oneline –graphgit log –graph –pretty=format:’%h | %an %cd | %s’ –date=format:’%Y-%m-%d %H:%M’ 2. 撤销合并git merge –abort 3. 查看差异 工作区和暂存区的区别：git diff 工作区和版本库的区别：git diff HEAD 暂存区和版本库的区别：">
   
     <link rel="alternative" href="/atom.xml" title="yintp&#39;s blog" type="application/atom+xml">
   
@@ -147,36 +151,88 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-git-1" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/10/16/git-1/" class="archive-article-date">
-  	<time datetime="2019-10-16T08:53:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-16</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/10/16/git-1/">常用git命令</a>
+    <h1 class="article-title" itemprop="name">
+      常用git命令
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+
+        
+          <br/>
+          <a class="cloud-tie-join-count" href="javascript:void(0);" style="color:gray;font-size:14px;">
+            <span class="icon-smile"></span>
+            <span id="busuanzi_container_page_pv" style="color:#999;font-size:16px;">
+              <span id="busuanzi_value_page_pv"></span>
+            </span>
+          </a>
+        
+
+        
+        <a href="/2019/10/16/git-1/" class="archive-article-date">
+  	<time datetime="2019-10-16T08:53:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-16</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-查看提交历史"><a href="#1-查看提交历史" class="headerlink" title="1. 查看提交历史"></a>1. 查看提交历史</h1><p>git log –oneline –graph<br>git log –graph –pretty=format:’%h | %an %cd | %s’ –date=format:’%Y-%m-%d %H:%M’</p>
+<h1 id="2-撤销合并"><a href="#2-撤销合并" class="headerlink" title="2. 撤销合并"></a>2. 撤销合并</h1><p>git merge –abort</p>
+<h1 id="3-查看差异"><a href="#3-查看差异" class="headerlink" title="3. 查看差异"></a>3. 查看差异</h1><ul>
+<li>工作区和暂存区的区别：git diff</li>
+<li>工作区和版本库的区别：git diff HEAD</li>
+<li>暂存区和版本库的区别：git diff –cached</li>
+</ul>
+<h1 id="4-删除没有跟踪过的文件"><a href="#4-删除没有跟踪过的文件" class="headerlink" title="4. 删除没有跟踪过的文件"></a>4. 删除没有跟踪过的文件</h1><ul>
+<li>查看会删掉的文件：git clean -n</li>
+<li>删除当前目录下的文件：git clean -f</li>
+</ul>
+<h1 id="5-版本回退"><a href="#5-版本回退" class="headerlink" title="5. 版本回退"></a>5. 版本回退</h1><p>git reset hash</p>
+
+      
+
+      
+        <div class="page-reward">
+          <a href="javascript:;" class="page-reward-btn tooltip-top">
+            <div class="tooltip tooltip-east">
+            <span class="tooltip-item">
+              赏
+            </span>
+            <span class="tooltip-content">
+              <span class="tooltip-text">
+                <span class="tooltip-inner">
+                  <p class="reward-p"><i class="icon icon-quo-left"></i>谢谢你请我吃糖果<i class="icon icon-quo-right"></i></p>
+                  <div class="reward-box">
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/alipay.png">
+                      <span class="reward-type">支付宝</span>
+                    </div>
+                    
+                    
+                    <div class="reward-box-item">
+                      <img class="reward-img" src="/assets/img/wechatpay.png">
+                      <span class="reward-type">微信</span>
+                    </div>
+                    
+                  </div>
+                </span>
+              </span>
+            </span>
+          </div>
+          </a>
+        </div>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -188,7 +244,7 @@
 		</ul>
 	</div>
 
-          
+      
 	<div class="article-category tagcloud">
 		<i class="icon-book icon"></i>
 		<ul class="article-tag-list">
@@ -201,481 +257,117 @@
 	</div>
 
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="http://bshare.optimix.asia/barCode?site=weixin&url=https://yintp.github.io/2019/10/16/git-1/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
   
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/18/java-float-1/" class="archive-article-date">
-  	<time datetime="2019-09-18T06:59:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
-</a>
+<nav id="article-nav">
+  
+  
+    <a href="/2019/09/18/java-float-1/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">Java浮点数精确问题</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
         </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/18/java-float-1/">Java浮点数精确问题</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
+        
+        
+        <div class="toc-container tooltip-left">
+            <i class="icon-font icon-category"></i>
+            <div class="tooltip tooltip-east">
+                <span class="tooltip-item">
+                </span>
+                <span class="tooltip-content">
+                    <div class="toc-article">
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-查看提交历史"><span class="toc-number">1.</span> <span class="toc-text">1. 查看提交历史</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-撤销合并"><span class="toc-number">2.</span> <span class="toc-text">2. 撤销合并</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-查看差异"><span class="toc-number">3.</span> <span class="toc-text">3. 查看差异</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-删除没有跟踪过的文件"><span class="toc-number">4.</span> <span class="toc-text">4. 删除没有跟踪过的文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-版本回退"><span class="toc-number">5.</span> <span class="toc-text">5. 版本回退</span></a></li></ol>
+                    </div>
+                </span>
+            </div>
         </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/11/algorithms-search-3/" class="archive-article-date">
-  	<time datetime="2019-09-11T06:34:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/11/algorithms-search-3/">顺序查找算法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
+        
+    </div>
+</aside>
 
 
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/11/algorithms-search-2/" class="archive-article-date">
-  	<time datetime="2019-09-11T06:30:57.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/11/algorithms-search-2/">插入查找法</a>
-    </h1>
-  
 
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/11/algorithms-search-1/" class="archive-article-date">
-  	<time datetime="2019-09-11T06:27:59.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-11</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/11/algorithms-search-1/">二分查找法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/15/it-time-1/" class="archive-article-date">
-  	<time datetime="2019-08-15T02:43:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-15</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/15/it-time-1/">关于时间</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">时间</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/08/12/essay-3/" class="archive-article-date">
-  	<time datetime="2019-08-12T12:59:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-08-12</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/08/12/essay-3/">聊聊学习方法</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">思考</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/27/essay-2/" class="archive-article-date">
-  	<time datetime="2019-07-27T09:17:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-27</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/27/essay-2/">戒子书</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">思考</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/杂文//" class="article-tag-list-link color3">杂文</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/26/essay-1/" class="archive-article-date">
-  	<time datetime="2019-07-26T13:12:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-26</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/26/essay-1/">威斯敏斯特教堂边的墓志铭</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">思考</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/杂文//" class="article-tag-list-link color3">杂文</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
-  
-    
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/07/18/hello-world/" class="archive-article-date">
-  	<time datetime="2019-07-18T09:55:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-07-18</time>
-</a>
-        </div>
-    	 
-  
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/07/18/hello-world/">Hello World</a>
-    </h1>
-  
-
-        <div class="article-info info-on-right">
-          
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">Java</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-          
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-
-        </div>
-        <div class="clearfix"></div>
-    </header>
-  </div>
-</article>
   
   
-    </div></section>
   
 
-    
-    <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/archives/page/2/">2</a><a class="extend next" rel="next" href="/archives/page/2/">Next &raquo;</a>
-    </nav>
+  
+
+  
+
   
 
 
@@ -709,8 +401,8 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
-		isArchive: true,
+		isPost: true,
+		isArchive: false,
 		isTag: false,
 		isCategory: false,
 		open_in_new: false,
