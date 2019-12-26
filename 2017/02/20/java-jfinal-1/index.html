@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://yintp.github.io">
   <title>Jfinal自定义实现getModels方法 | yintp&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="本人在项目中需要从页面传一个明细列表到后台保存，由于jfinal目前还没有页面映射model列表的方法，所以把它分享给大家： 1、com.jfinal.core中的Controller： 123456789101112131415161718192021/** * @description:获取model列表 * @param modelClass model的class * @return Li">
+  <meta name="description" content="本人在项目中需要从页面传一个明细列表到后台保存，由于jfinal目前还没有页面映射model列表的方法，所以把它分享给大家： 1、com.jfinal.core中的Controller：">
 <meta name="keywords" content="Java">
 <meta property="og:type" content="article">
 <meta property="og:title" content="Jfinal自定义实现getModels方法">
 <meta property="og:url" content="https://yintp.github.io/2017/02/20/java-jfinal-1/index.html">
 <meta property="og:site_name" content="yintp&#39;s blog">
-<meta property="og:description" content="本人在项目中需要从页面传一个明细列表到后台保存，由于jfinal目前还没有页面映射model列表的方法，所以把它分享给大家： 1、com.jfinal.core中的Controller： 123456789101112131415161718192021/** * @description:获取model列表 * @param modelClass model的class * @return Li">
+<meta property="og:description" content="本人在项目中需要从页面传一个明细列表到后台保存，由于jfinal目前还没有页面映射model列表的方法，所以把它分享给大家： 1、com.jfinal.core中的Controller：">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-11T06:08:34.247Z">
+<meta property="og:updated_time" content="2019-12-26T05:51:48.196Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="Jfinal自定义实现getModels方法">
-<meta name="twitter:description" content="本人在项目中需要从页面传一个明细列表到后台保存，由于jfinal目前还没有页面映射model列表的方法，所以把它分享给大家： 1、com.jfinal.core中的Controller： 123456789101112131415161718192021/** * @description:获取model列表 * @param modelClass model的class * @return Li">
+<meta name="twitter:description" content="本人在项目中需要从页面传一个明细列表到后台保存，由于jfinal目前还没有页面映射model列表的方法，所以把它分享给大家： 1、com.jfinal.core中的Controller：">
   
     <link rel="alternative" href="/atom.xml" title="yintp&#39;s blog" type="application/atom+xml">
   
@@ -184,6 +184,8 @@
       
         <p>本人在项目中需要从页面传一个明细列表到后台保存，由于jfinal目前还没有页面映射model列表的方法，所以把它分享给大家：</p>
 <p>1、com.jfinal.core中的Controller：</p>
+<a id="more"></a>
+
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @description:获取model列表</span><br><span class="line"> * @param modelClass model的class</span><br><span class="line"> * @return List&lt;T&gt; 返回的model列表</span><br><span class="line"> * @author: yintp</span><br><span class="line"> * @createTime: 2017年2月14日 上午10:44:20</span><br><span class="line"> */</span><br><span class="line">public &lt;T&gt; List&lt;T&gt; getModels(Class&lt;T&gt; modelClass)</span><br><span class="line">&#123;</span><br><span class="line">    List&lt;T&gt; modelList = new ArrayList&lt;T&gt;();</span><br><span class="line">    int size = getLargeIndex(request.getParameterMap());</span><br><span class="line">    for (int i = 0; i &lt;= size; i++)</span><br><span class="line">    &#123;</span><br><span class="line">        T model = getModel(modelClass, StrKit.firstCharToLowerCase(modelClass.getSimpleName()) + &quot;[&quot; + i + &quot;]&quot;);</span><br><span class="line">        if (!modelIsEmpty(model))</span><br><span class="line">        &#123;</span><br><span class="line">            modelList.add(model);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return modelList;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">/**</span><br><span class="line"> * @description:返回多个model列表的最大索引下标值</span><br><span class="line"> * @param map 参数map</span><br><span class="line"> * @return int 最大索引下标值,参数map为空时返回0</span><br><span class="line"> * @author: yintp</span><br><span class="line"> * @createTime: 2017年2月20日 上午9:54:53</span><br><span class="line"> */</span><br><span class="line">private int getLargeIndex(Map&lt;String, String[]&gt; map)</span><br><span class="line">&#123;</span><br><span class="line">    int max = 0;</span><br><span class="line">    if (map != null)</span><br><span class="line">    &#123;</span><br><span class="line">        String reg = &quot;[^0-9]&quot;;</span><br><span class="line">        Pattern p = Pattern.compile(reg);</span><br><span class="line">        for (String key : map.keySet())</span><br><span class="line">        &#123;</span><br><span class="line">            Matcher m = p.matcher(key);</span><br><span class="line">            String num = m.replaceAll(&quot;&quot;).trim();</span><br><span class="line">            int index = parseInt(num);</span><br><span class="line">            if(index &gt; max)</span><br><span class="line">            &#123;</span><br><span class="line">                max = index;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    return max;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
@@ -491,6 +493,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据结构和算法</a>
               </li>
              
               <li class="article-tag-list-item">

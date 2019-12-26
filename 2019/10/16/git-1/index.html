@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://yintp.github.io">
   <title>常用git命令 | yintp&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 查看提交历史git log –oneline –graphgit log –graph –pretty=format:’%h | %an %cd | %s’ –date=format:’%Y-%m-%d %H:%M’ 2. 撤销合并git merge –abort">
+  <meta name="description" content="1. 查看提交历史 快速查看：git log –oneline –graph 精确查看：git log –graph –pretty=format:’%h | %an %cd | %s’ –date=format:’%Y-%m-%d %H:%M’ 查看远程：git log origin/branchName  2. 撤销合并git merge –abort">
 <meta name="keywords" content="Git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常用git命令">
 <meta property="og:url" content="https://yintp.github.io/2019/10/16/git-1/index.html">
 <meta property="og:site_name" content="yintp&#39;s blog">
-<meta property="og:description" content="1. 查看提交历史git log –oneline –graphgit log –graph –pretty=format:’%h | %an %cd | %s’ –date=format:’%Y-%m-%d %H:%M’ 2. 撤销合并git merge –abort">
+<meta property="og:description" content="1. 查看提交历史 快速查看：git log –oneline –graph 精确查看：git log –graph –pretty=format:’%h | %an %cd | %s’ –date=format:’%Y-%m-%d %H:%M’ 查看远程：git log origin/branchName  2. 撤销合并git merge –abort">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-16T09:37:07.640Z">
+<meta property="og:updated_time" content="2019-11-12T08:48:10.361Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用git命令">
-<meta name="twitter:description" content="1. 查看提交历史git log –oneline –graphgit log –graph –pretty=format:’%h | %an %cd | %s’ –date=format:’%Y-%m-%d %H:%M’ 2. 撤销合并git merge –abort">
+<meta name="twitter:description" content="1. 查看提交历史 快速查看：git log –oneline –graph 精确查看：git log –graph –pretty=format:’%h | %an %cd | %s’ –date=format:’%Y-%m-%d %H:%M’ 查看远程：git log origin/branchName  2. 撤销合并git merge –abort">
   
     <link rel="alternative" href="/atom.xml" title="yintp&#39;s blog" type="application/atom+xml">
   
@@ -182,7 +182,11 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-查看提交历史"><a href="#1-查看提交历史" class="headerlink" title="1. 查看提交历史"></a>1. 查看提交历史</h1><p>git log –oneline –graph<br>git log –graph –pretty=format:’%h | %an %cd | %s’ –date=format:’%Y-%m-%d %H:%M’</p>
+        <h1 id="1-查看提交历史"><a href="#1-查看提交历史" class="headerlink" title="1. 查看提交历史"></a>1. 查看提交历史</h1><ul>
+<li>快速查看：git log –oneline –graph</li>
+<li>精确查看：git log –graph –pretty=format:’%h | %an %cd | %s’ –date=format:’%Y-%m-%d %H:%M’</li>
+<li>查看远程：git log origin/branchName</li>
+</ul>
 <h1 id="2-撤销合并"><a href="#2-撤销合并" class="headerlink" title="2. 撤销合并"></a>2. 撤销合并</h1><p>git merge –abort</p>
 <a id="more"></a>
 
@@ -195,7 +199,14 @@
 <li>查看会删掉的文件：git clean -n</li>
 <li>删除当前目录下的文件：git clean -f</li>
 </ul>
-<h1 id="5-版本回退"><a href="#5-版本回退" class="headerlink" title="5. 版本回退"></a>5. 版本回退</h1><p>git reset hash</p>
+<h1 id="5-版本回退"><a href="#5-版本回退" class="headerlink" title="5. 版本回退"></a>5. 版本回退</h1><ul>
+<li>git reset hash</li>
+</ul>
+<h1 id="6-查看提交所属分支"><a href="#6-查看提交所属分支" class="headerlink" title="6. 查看提交所属分支"></a>6. 查看提交所属分支</h1><ul>
+<li>查看本地所有分支：git branch –contains CommitID</li>
+<li>查看远程所有分支：git branch -r –contains CommitID</li>
+<li>查看本地和远程所有分支：git branch -a –contains CommitID</li>
+</ul>
 
       
 
@@ -360,7 +371,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-查看提交历史"><span class="toc-number">1.</span> <span class="toc-text">1. 查看提交历史</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-撤销合并"><span class="toc-number">2.</span> <span class="toc-text">2. 撤销合并</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-查看差异"><span class="toc-number">3.</span> <span class="toc-text">3. 查看差异</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-删除没有跟踪过的文件"><span class="toc-number">4.</span> <span class="toc-text">4. 删除没有跟踪过的文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-版本回退"><span class="toc-number">5.</span> <span class="toc-text">5. 版本回退</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-查看提交历史"><span class="toc-number">1.</span> <span class="toc-text">1. 查看提交历史</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-撤销合并"><span class="toc-number">2.</span> <span class="toc-text">2. 撤销合并</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-查看差异"><span class="toc-number">3.</span> <span class="toc-text">3. 查看差异</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-删除没有跟踪过的文件"><span class="toc-number">4.</span> <span class="toc-text">4. 删除没有跟踪过的文件</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-版本回退"><span class="toc-number">5.</span> <span class="toc-text">5. 版本回退</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#6-查看提交所属分支"><span class="toc-number">6.</span> <span class="toc-text">6. 查看提交所属分支</span></a></li></ol>
                     </div>
                 </span>
             </div>
@@ -490,6 +501,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">Java</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据结构和算法</a>
               </li>
              
               <li class="article-tag-list-item">
