@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://yintp.github.io">
   <title>记录一次Netty堆外内存溢出处理 | yintp&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="记录一次Netty堆外内存溢出处理某天上午，线上告警，经查看日志发现是Netty申请堆外内存不到抛出的异常。发现这台机器内存拉满，停止处理请求了，紧接着该服务另一台机器没过多久也停止处理请求。于是先重启服务器，恢复正常。初始问题猜想：由于该服务已经上线了两个多月没重启过，一直到现在才发生了内存拉满，是不是内存产生了泄露导致的？ 为了找出问题，于是本地模拟异常发生： 准备 软件版本：spring-b">
+  <meta name="description" content="记录一次Netty堆外内存溢出处理某天上午，线上告警，经查看日志发现是Netty申请堆外内存不到抛出的异常。发现这台机器内存拉满，停止处理请求了，紧接着该服务另一台机器没过多久也停止处理请求。于是先重启服务器，恢复正常。初始问题猜想：由于该服务已经上线了两个多月没重启过，一直到现在才发生了内存拉满，是不是内存产生了泄露导致的？">
 <meta name="keywords" content="后端,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Java,Developer,Programmer,Coder,Geek">
 <meta property="og:type" content="article">
 <meta property="og:title" content="记录一次Netty堆外内存溢出处理">
 <meta property="og:url" content="https://yintp.github.io/2019/12/27/java-netty-1/index.html">
 <meta property="og:site_name" content="yintp&#39;s blog">
-<meta property="og:description" content="记录一次Netty堆外内存溢出处理某天上午，线上告警，经查看日志发现是Netty申请堆外内存不到抛出的异常。发现这台机器内存拉满，停止处理请求了，紧接着该服务另一台机器没过多久也停止处理请求。于是先重启服务器，恢复正常。初始问题猜想：由于该服务已经上线了两个多月没重启过，一直到现在才发生了内存拉满，是不是内存产生了泄露导致的？ 为了找出问题，于是本地模拟异常发生： 准备 软件版本：spring-b">
+<meta property="og:description" content="记录一次Netty堆外内存溢出处理某天上午，线上告警，经查看日志发现是Netty申请堆外内存不到抛出的异常。发现这台机器内存拉满，停止处理请求了，紧接着该服务另一台机器没过多久也停止处理请求。于是先重启服务器，恢复正常。初始问题猜想：由于该服务已经上线了两个多月没重启过，一直到现在才发生了内存拉满，是不是内存产生了泄露导致的？">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-12-27T06:54:27.538Z">
+<meta property="og:updated_time" content="2019-12-27T06:57:18.356Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="记录一次Netty堆外内存溢出处理">
-<meta name="twitter:description" content="记录一次Netty堆外内存溢出处理某天上午，线上告警，经查看日志发现是Netty申请堆外内存不到抛出的异常。发现这台机器内存拉满，停止处理请求了，紧接着该服务另一台机器没过多久也停止处理请求。于是先重启服务器，恢复正常。初始问题猜想：由于该服务已经上线了两个多月没重启过，一直到现在才发生了内存拉满，是不是内存产生了泄露导致的？ 为了找出问题，于是本地模拟异常发生： 准备 软件版本：spring-b">
+<meta name="twitter:description" content="记录一次Netty堆外内存溢出处理某天上午，线上告警，经查看日志发现是Netty申请堆外内存不到抛出的异常。发现这台机器内存拉满，停止处理请求了，紧接着该服务另一台机器没过多久也停止处理请求。于是先重启服务器，恢复正常。初始问题猜想：由于该服务已经上线了两个多月没重启过，一直到现在才发生了内存拉满，是不是内存产生了泄露导致的？">
   
     <link rel="alternative" href="/atom.xml" title="yintp&#39;s blog" type="application/atom+xml">
   
@@ -183,6 +183,8 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="记录一次Netty堆外内存溢出处理"><a href="#记录一次Netty堆外内存溢出处理" class="headerlink" title="记录一次Netty堆外内存溢出处理"></a>记录一次Netty堆外内存溢出处理</h1><p>某天上午，线上告警，经查看日志发现是Netty申请堆外内存不到抛出的异常。发现这台机器内存拉满，停止处理请求了，紧接着该服务另一台机器没过多久也停止处理请求。<br>于是先重启服务器，恢复正常。初始问题猜想：由于该服务已经上线了两个多月没重启过，一直到现在才发生了内存拉满，是不是内存产生了泄露导致的？</p>
+<a id="more"></a>
+
 <p>为了找出问题，于是本地模拟异常发生：</p>
 <h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol>
 <li>软件版本：spring-boot:2.1.6.RELEASE、spring-cloud:Greenwich.SR1</li>
@@ -490,11 +492,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">思考</a>
+                <a href="javascript:void(0)" class="js-tag color3">数据结构和算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构和算法</a>
+                <a href="javascript:void(0)" class="js-tag color3">思考</a>
               </li>
              
               <li class="article-tag-list-item">
