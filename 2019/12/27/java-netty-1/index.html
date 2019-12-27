@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="https://yintp.github.io">
-  <title>关于ssh | yintp&#39;s blog</title>
+  <title>记录一次Netty堆外内存溢出处理 | yintp&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 什么是ssh(Secure Shell)?SSH专为远程登录会话和其他网络服务提供安全性的协议。传统的网络服务程序，如：ftp、pop和telnet在本质上都是不安全的，因为它们在网络上用明文传送口令和数据。利用SSH协议可以有效防止远程管理过程中的信息泄露问题。SSH最初是UNIX系统上的一个程序，后来又迅速扩展到其他操作平台。几乎所有UNIX平台—包括HP-UX、Linux、AIX、So">
-<meta name="keywords" content="ssh">
+  <meta name="description" content="记录一次Netty堆外内存溢出处理某天上午，线上告警，经查看日志发现是Netty申请堆外内存不到抛出的异常。发现这台机器内存拉满，停止处理请求了，紧接着该服务另一台机器没过多久也停止处理请求。于是先重启服务器，恢复正常。初始问题猜想：由于该服务已经上线了两个多月没重启过，一直到现在才发生了内存拉满，是不是内存产生了泄露导致的？ 为了找出问题，于是本地模拟异常发生： 准备 软件版本：spring-b">
+<meta name="keywords" content="后端,开发者,程序猿,程序媛,极客,编程,代码,开源,IT网站,Java,Developer,Programmer,Coder,Geek">
 <meta property="og:type" content="article">
-<meta property="og:title" content="关于ssh">
-<meta property="og:url" content="https://yintp.github.io/2019/10/21/ssh-1/index.html">
+<meta property="og:title" content="记录一次Netty堆外内存溢出处理">
+<meta property="og:url" content="https://yintp.github.io/2019/12/27/java-netty-1/index.html">
 <meta property="og:site_name" content="yintp&#39;s blog">
-<meta property="og:description" content="1. 什么是ssh(Secure Shell)?SSH专为远程登录会话和其他网络服务提供安全性的协议。传统的网络服务程序，如：ftp、pop和telnet在本质上都是不安全的，因为它们在网络上用明文传送口令和数据。利用SSH协议可以有效防止远程管理过程中的信息泄露问题。SSH最初是UNIX系统上的一个程序，后来又迅速扩展到其他操作平台。几乎所有UNIX平台—包括HP-UX、Linux、AIX、So">
+<meta property="og:description" content="记录一次Netty堆外内存溢出处理某天上午，线上告警，经查看日志发现是Netty申请堆外内存不到抛出的异常。发现这台机器内存拉满，停止处理请求了，紧接着该服务另一台机器没过多久也停止处理请求。于是先重启服务器，恢复正常。初始问题猜想：由于该服务已经上线了两个多月没重启过，一直到现在才发生了内存拉满，是不是内存产生了泄露导致的？ 为了找出问题，于是本地模拟异常发生： 准备 软件版本：spring-b">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-10-21T09:38:51.554Z">
+<meta property="og:updated_time" content="2019-12-27T06:54:27.538Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="关于ssh">
-<meta name="twitter:description" content="1. 什么是ssh(Secure Shell)?SSH专为远程登录会话和其他网络服务提供安全性的协议。传统的网络服务程序，如：ftp、pop和telnet在本质上都是不安全的，因为它们在网络上用明文传送口令和数据。利用SSH协议可以有效防止远程管理过程中的信息泄露问题。SSH最初是UNIX系统上的一个程序，后来又迅速扩展到其他操作平台。几乎所有UNIX平台—包括HP-UX、Linux、AIX、So">
+<meta name="twitter:title" content="记录一次Netty堆外内存溢出处理">
+<meta name="twitter:description" content="记录一次Netty堆外内存溢出处理某天上午，线上告警，经查看日志发现是Netty申请堆外内存不到抛出的异常。发现这台机器内存拉满，停止处理请求了，紧接着该服务另一台机器没过多久也停止处理请求。于是先重启服务器，恢复正常。初始问题猜想：由于该服务已经上线了两个多月没重启过，一直到现在才发生了内存拉满，是不是内存产生了泄露导致的？ 为了找出问题，于是本地模拟异常发生： 准备 软件版本：spring-b">
   
     <link rel="alternative" href="/atom.xml" title="yintp&#39;s blog" type="application/atom+xml">
   
@@ -151,14 +151,14 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-ssh-1" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-java-netty-1" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      关于ssh
+      记录一次Netty堆外内存溢出处理
     </h1>
   
 
@@ -174,97 +174,56 @@
         
 
         
-        <a href="/2019/10/21/ssh-1/" class="archive-article-date">
-  	<time datetime="2019-10-21T05:53:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-21</time>
+        <a href="/2019/12/27/java-netty-1/" class="archive-article-date">
+  	<time datetime="2019-12-27T06:26:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-12-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1-什么是ssh-Secure-Shell"><a href="#1-什么是ssh-Secure-Shell" class="headerlink" title="1. 什么是ssh(Secure Shell)?"></a>1. 什么是ssh(Secure Shell)?</h1><p>SSH专为远程登录会话和其他网络服务提供安全性的协议。传统的网络服务程序，如：ftp、pop和telnet在本质上都是不安全的，因为它们在网络上用明文传送口令和数据。<br>利用SSH协议可以有效防止远程管理过程中的信息泄露问题。SSH最初是UNIX系统上的一个程序，后来又迅速扩展到其他操作平台。几乎所有UNIX平台—包括HP-UX、Linux、<br>AIX、Solaris、Digital UNIX、Irix，以及其他平台，都可运行SSH。</p>
-<a id="more"></a>
+        <h1 id="记录一次Netty堆外内存溢出处理"><a href="#记录一次Netty堆外内存溢出处理" class="headerlink" title="记录一次Netty堆外内存溢出处理"></a>记录一次Netty堆外内存溢出处理</h1><p>某天上午，线上告警，经查看日志发现是Netty申请堆外内存不到抛出的异常。发现这台机器内存拉满，停止处理请求了，紧接着该服务另一台机器没过多久也停止处理请求。<br>于是先重启服务器，恢复正常。初始问题猜想：由于该服务已经上线了两个多月没重启过，一直到现在才发生了内存拉满，是不是内存产生了泄露导致的？</p>
+<p>为了找出问题，于是本地模拟异常发生：</p>
+<h2 id="准备"><a href="#准备" class="headerlink" title="准备"></a>准备</h2><ol>
+<li>软件版本：spring-boot:2.1.6.RELEASE、spring-cloud:Greenwich.SR1</li>
+<li>JVM设置Netty最大堆外内存参数：-Dio.netty.maxDirectMemory=12582912</li>
+<li>增大Http请求体字节数</li>
+<li>20线程同时循环100次测试</li>
+</ol>
+<h2 id="异常以及分析"><a href="#异常以及分析" class="headerlink" title="异常以及分析"></a>异常以及分析</h2><p>果然，没过一会就出现了线上的异常，日志如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line">io.netty.util.internal.OutOfDirectMemoryError: failed to allocate 1024 byte(s) of direct memory (used: 12582828, max: 12582912)</span><br><span class="line">	at io.netty.util.internal.PlatformDependent.incrementMemoryCounter(PlatformDependent.java:667)</span><br><span class="line">	at io.netty.util.internal.PlatformDependent.allocateDirectNoCleaner(PlatformDependent.java:622)</span><br><span class="line">	at io.netty.buffer.UnpooledUnsafeNoCleanerDirectByteBuf.allocateDirect(UnpooledUnsafeNoCleanerDirectByteBuf.java:30)</span><br><span class="line">	at io.netty.buffer.UnpooledUnsafeDirectByteBuf.&lt;init&gt;(UnpooledUnsafeDirectByteBuf.java:66)</span><br><span class="line">	at io.netty.buffer.UnpooledUnsafeNoCleanerDirectByteBuf.&lt;init&gt;(UnpooledUnsafeNoCleanerDirectByteBuf.java:25)</span><br><span class="line">	at io.netty.buffer.UnsafeByteBufUtil.newUnsafeDirectByteBuf(UnsafeByteBufUtil.java:625)</span><br><span class="line">	at io.netty.buffer.PooledByteBufAllocator.newDirectBuffer(PooledByteBufAllocator.java:345)</span><br><span class="line">	at io.netty.buffer.AbstractByteBufAllocator.directBuffer(AbstractByteBufAllocator.java:187)</span><br><span class="line">	at io.netty.buffer.AbstractByteBufAllocator.directBuffer(AbstractByteBufAllocator.java:178)</span><br><span class="line">	at io.netty.buffer.AbstractByteBufAllocator.ioBuffer(AbstractByteBufAllocator.java:139)</span><br><span class="line">	at io.netty.channel.DefaultMaxMessagesRecvByteBufAllocator$MaxMessageHandle.allocate(DefaultMaxMessagesRecvByteBufAllocator.java:114)</span><br><span class="line">	at io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:147)</span><br><span class="line">	at io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:682)</span><br><span class="line">	at io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:617)</span><br><span class="line">	at io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:534)</span><br><span class="line">	at io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496)</span><br><span class="line">	at io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:906)</span><br><span class="line">	at io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)</span><br><span class="line">	at java.lang.Thread.run(Thread.java:748)</span><br></pre></td></tr></table></figure>
 
-<h1 id="2-协议框架"><a href="#2-协议框架" class="headerlink" title="2. 协议框架"></a>2. 协议框架</h1><p>SSH 主要由三部分组成：</p>
+<p>异常抛出的地方是PlatformDependent类中的incrementMemoryCounter方法，该方法代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">private static void incrementMemoryCounter(int capacity) &#123;</span><br><span class="line">    if (DIRECT_MEMORY_COUNTER != null) &#123;</span><br><span class="line">        long newUsedMemory = DIRECT_MEMORY_COUNTER.addAndGet((long)capacity);</span><br><span class="line">        if (newUsedMemory &gt; DIRECT_MEMORY_LIMIT) &#123;</span><br><span class="line">            DIRECT_MEMORY_COUNTER.addAndGet((long)(-capacity));</span><br><span class="line">            throw new OutOfDirectMemoryError(&quot;failed to allocate &quot; + capacity + &quot; byte(s) of direct memory (used: &quot; + (newUsedMemory - (long)capacity) + &quot;, max: &quot; + DIRECT_MEMORY_LIMIT + &apos;)&apos;);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>代码的意思就是申请指定大小的内存并判断是否超过限制，若申请指定直接内存后的大小超过限制则抛出异常。<br>DIRECT_MEMORY_LIMIT是一个long类型的常量，它的值由系统参数-Dio.netty.maxDirectMemory和JVM参数最大堆外内存设置。代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br></pre></td><td class="code"><pre><span class="line">static &#123;</span><br><span class="line">    BIG_ENDIAN_NATIVE_ORDER = ByteOrder.nativeOrder() == ByteOrder.BIG_ENDIAN;</span><br><span class="line">    NOOP = new Cleaner() &#123;</span><br><span class="line">        public void freeDirectBuffer(ByteBuffer buffer) &#123;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;;</span><br><span class="line">    if (javaVersion() &gt;= 7) &#123;</span><br><span class="line">        RANDOM_PROVIDER = new PlatformDependent.ThreadLocalRandomProvider() &#123;</span><br><span class="line">            public Random current() &#123;</span><br><span class="line">                return ThreadLocalRandom.current();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        RANDOM_PROVIDER = new PlatformDependent.ThreadLocalRandomProvider() &#123;</span><br><span class="line">            public Random current() &#123;</span><br><span class="line">                return io.netty.util.internal.ThreadLocalRandom.current();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    long maxDirectMemory = SystemPropertyUtil.getLong(&quot;io.netty.maxDirectMemory&quot;, -1L);</span><br><span class="line">    if (maxDirectMemory != 0L &amp;&amp; hasUnsafe() &amp;&amp; PlatformDependent0.hasDirectBufferNoCleanerConstructor()) &#123;</span><br><span class="line">        USE_DIRECT_BUFFER_NO_CLEANER = true;</span><br><span class="line">        if (maxDirectMemory &lt; 0L) &#123;</span><br><span class="line">            maxDirectMemory = MAX_DIRECT_MEMORY;</span><br><span class="line">            if (maxDirectMemory &lt;= 0L) &#123;</span><br><span class="line">                DIRECT_MEMORY_COUNTER = null;</span><br><span class="line">            &#125; else &#123;</span><br><span class="line">                DIRECT_MEMORY_COUNTER = new AtomicLong();</span><br><span class="line">            &#125;</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            DIRECT_MEMORY_COUNTER = new AtomicLong();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        USE_DIRECT_BUFFER_NO_CLEANER = false;</span><br><span class="line">        DIRECT_MEMORY_COUNTER = null;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    logger.debug(&quot;-Dio.netty.maxDirectMemory: &#123;&#125; bytes&quot;, maxDirectMemory);</span><br><span class="line">    DIRECT_MEMORY_LIMIT = maxDirectMemory &gt;= 1L ? maxDirectMemory : MAX_DIRECT_MEMORY;</span><br><span class="line">    int tryAllocateUninitializedArray = SystemPropertyUtil.getInt(&quot;io.netty.uninitializedArrayAllocationThreshold&quot;, 1024);</span><br><span class="line">    UNINITIALIZED_ARRAY_ALLOCATION_THRESHOLD = javaVersion() &gt;= 9 &amp;&amp; PlatformDependent0.hasAllocateArrayMethod() ? tryAllocateUninitializedArray : -1;</span><br><span class="line">    logger.debug(&quot;-Dio.netty.uninitializedArrayAllocationThreshold: &#123;&#125;&quot;, UNINITIALIZED_ARRAY_ALLOCATION_THRESHOLD);</span><br><span class="line">    MAYBE_SUPER_USER = maybeSuperUser0();</span><br><span class="line">    if (!isAndroid()) &#123;</span><br><span class="line">        if (javaVersion() &gt;= 9) &#123;</span><br><span class="line">            CLEANER = (Cleaner)(CleanerJava9.isSupported() ? new CleanerJava9() : NOOP);</span><br><span class="line">        &#125; else &#123;</span><br><span class="line">            CLEANER = (Cleaner)(CleanerJava6.isSupported() ? new CleanerJava6() : NOOP);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125; else &#123;</span><br><span class="line">        CLEANER = NOOP;</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    DIRECT_BUFFER_PREFERRED = CLEANER != NOOP &amp;&amp; !SystemPropertyUtil.getBoolean(&quot;io.netty.noPreferDirect&quot;, false);</span><br><span class="line">    if (logger.isDebugEnabled()) &#123;</span><br><span class="line">        logger.debug(&quot;-Dio.netty.noPreferDirect: &#123;&#125;&quot;, !DIRECT_BUFFER_PREFERRED);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    if (CLEANER == NOOP &amp;&amp; !PlatformDependent0.isExplicitNoUnsafe()) &#123;</span><br><span class="line">        logger.info(&quot;Your platform does not provide complete low-level API for accessing direct buffers reliably. Unless explicitly requested, heap buffer will always be preferred to avoid potential system instability.&quot;);</span><br><span class="line">    &#125;</span><br><span class="line">    </span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<p>DIRECT_MEMORY_LIMIT赋值是由：DIRECT_MEMORY_LIMIT = maxDirectMemory &gt;= 1L ? maxDirectMemory : MAX_DIRECT_MEMORY;<br>其中maxDirectMemory赋值是由：long maxDirectMemory = SystemPropertyUtil.getLong(“io.netty.maxDirectMemory”, -1L);<br>而MAX_DIRECT_MEMORY是由静态private static final long MAX_DIRECT_MEMORY = maxDirectMemory0(); 这个方法获取的是jvm中的配置，这里不同jvm取值不同，jdk8的hotspot虚拟机取的是maxDirectMemory参数。<br>DIRECT_MEMORY_COUNTER是一个静态的常量，表示的是当前已申请的堆外内存，于是添加了监控这个变量值的代码，如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line">package cn.fintech.api.gateway.config;</span><br><span class="line"></span><br><span class="line">import io.netty.util.internal.PlatformDependent;</span><br><span class="line">import org.slf4j.Logger;</span><br><span class="line">import org.slf4j.LoggerFactory;</span><br><span class="line">import org.springframework.context.annotation.Profile;</span><br><span class="line">import org.springframework.stereotype.Component;</span><br><span class="line">import org.springframework.util.ReflectionUtils;</span><br><span class="line"></span><br><span class="line">import javax.annotation.PostConstruct;</span><br><span class="line">import java.lang.reflect.Field;</span><br><span class="line">import java.util.concurrent.ScheduledExecutorService;</span><br><span class="line">import java.util.concurrent.ScheduledThreadPoolExecutor;</span><br><span class="line">import java.util.concurrent.TimeUnit;</span><br><span class="line">import java.util.concurrent.atomic.AtomicLong;</span><br><span class="line"></span><br><span class="line">/**</span><br><span class="line"> * @author yintp</span><br><span class="line"> */</span><br><span class="line">@Component</span><br><span class="line">@Profile(&#123;&quot;!prd&quot;&#125;)</span><br><span class="line">public class NettyDirectMemoryMonitor &#123;</span><br><span class="line"></span><br><span class="line">    private static final Logger log = LoggerFactory.getLogger(NettyDirectMemoryMonitor.class);</span><br><span class="line">    private static final ScheduledExecutorService excutor = new ScheduledThreadPoolExecutor(1);</span><br><span class="line"></span><br><span class="line">    private AtomicLong directMemory;</span><br><span class="line"></span><br><span class="line">    @PostConstruct</span><br><span class="line">    public void init() &#123;</span><br><span class="line">        Field field = ReflectionUtils.findField(PlatformDependent.class, &quot;DIRECT_MEMORY_COUNTER&quot;);</span><br><span class="line">        field.setAccessible(true);</span><br><span class="line">        try &#123;</span><br><span class="line">            directMemory = (AtomicLong) field.get(PlatformDependent.class);</span><br><span class="line">            excutor.scheduleAtFixedRate(this::run, 0, 1, TimeUnit.MINUTES);</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            log.info(&quot;netty_direct_memory monitor,init exception&quot;, e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    private void run() &#123;</span><br><span class="line">        try &#123;</span><br><span class="line">            int memory = (int) (directMemory.get() / 1024);</span><br><span class="line">            log.info(&quot;netty_direct_memory monitor, current size: &#123;&#125;KB&quot;, memory);</span><br><span class="line">        &#125; catch (Exception e) &#123;</span><br><span class="line">            log.info(&quot;netty_direct_memory monitor, doReport exception&quot;, e);</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>监控后请求发现，随着请求的增加这个值逐渐增加，并且发现一直上升，直至超过限制抛出异常。由于我们设置的最大直接内存为12M，在小范围内这个堆外直接内存的值一直增大可能不是因为内存泄露导致的。<br>所以将此监控代码部署到测试环境观察一段时间后，发现真的是一直上升直至内存不够抛出异常。此时我们基本可以确认是由于每次请求有堆外直接内存没有释放，导致内存泄露，最后抛出这个异常的。<br>但是知道了问题所在，如何确定是那段代码出的问题呢？</p>
+<p>Netty提供了ByteBuf泄露的检测机制，JVM启动参数中添加：-Dio.netty.leakDetection.level=advanced，告诉我们取样的1%的ByteBuf发生泄露的地方。每种类型的泄漏（创建的地方与访问路径一致）只打印一次。对性能有影响。主要是通过ResourceLeakDetector类处理，有兴趣的同学可以看看。<br>添加如下配置：</p>
 <ul>
-<li>传输层协议 [SSH-TRANS]<br>提供了服务器认证，保密性及完整性。此外它有时还提供压缩功能。SSH-TRANS通常运行在TCP/IP连接上，也可能用于其它可靠数据流上。SSH-TRANS提供了强力的加密技术、<br>密码主机认证及完整性保护。该协议中的认证基于主机，并且该协议不执行用户认证。更高层的用户认证协议可以设计为在此协议之上。</li>
-<li>用户认证协议 [SSH-USERAUTH]<br>用于向服务器提供客户端用户鉴别功能。它运行在传输层协议SSH-TRANS上面。当SSH-USERAUTH开始后，它从低层协议那里接收会话标识符（从第一次密钥交换中的交换哈希H）。<br>会话标识符唯一标识此会话并且适用于标记以证明私钥的所有权。SSH-USERAUTH 也需要知道低层协议是否提供保密性保护。</li>
-<li>连接协议 [SSH-CONNECT]<br>将多个加密隧道分成逻辑通道。它运行在用户认证协议上。它提供了交互式登录话路、远程命令执行、转发TCP/IP连接和转发X11连接。</li>
+<li>设置Netty内存泄露检测级别参数：-Dio.netty.leakDetection.level=advanced</li>
+<li>添加打印io.netty的日志：<logger name="io.netty" level="DEBUG"></logger></li>
+<li>设置Netty最大堆外内存参数：-Dio.netty.maxDirectMemory=125829120（最大内存调大10倍）</li>
 </ul>
-<h1 id="3-主机密钥机制"><a href="#3-主机密钥机制" class="headerlink" title="3. 主机密钥机制"></a>3. 主机密钥机制</h1><p>由于SSH协议是面向互联网网络中主机之间的互访与信息交换，SSH协议要求每一个使用本协议的主机都必须至少有一个自己的主机密钥对，服务方通过对客户方主机密钥的认证之后，<br>才能允许其连接请求。一个主机可以使用多个密钥，针对不同的密钥算法而拥有不同的密钥，但是至少有一种是必备的，即通过DSS算法产生的密钥。<br>SSH协议关于主机密钥认证的管理方案有两种：</p>
+<p>再次测试，此时Netty监控打印的日志很详细，摘抄部分关键如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line">#6:</span><br><span class="line">	io.netty.buffer.AdvancedLeakAwareByteBuf.writeBytes(AdvancedLeakAwareByteBuf.java:634)</span><br><span class="line">	io.netty.channel.socket.nio.NioSocketChannel.doReadBytes(NioSocketChannel.java:347)</span><br><span class="line">	io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:148)</span><br><span class="line">	io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:682)</span><br><span class="line">	io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:617)</span><br><span class="line">	io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:534)</span><br><span class="line">	io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496)</span><br><span class="line">	io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:906)</span><br><span class="line">	io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)</span><br><span class="line">	java.lang.Thread.run(Thread.java:748)</span><br><span class="line">Created at:</span><br><span class="line">	io.netty.buffer.PooledByteBufAllocator.newDirectBuffer(PooledByteBufAllocator.java:349)</span><br><span class="line">	io.netty.buffer.AbstractByteBufAllocator.directBuffer(AbstractByteBufAllocator.java:187)</span><br><span class="line">	io.netty.buffer.AbstractByteBufAllocator.directBuffer(AbstractByteBufAllocator.java:178)</span><br><span class="line">	io.netty.buffer.AbstractByteBufAllocator.ioBuffer(AbstractByteBufAllocator.java:139)</span><br><span class="line">	io.netty.channel.DefaultMaxMessagesRecvByteBufAllocator$MaxMessageHandle.allocate(DefaultMaxMessagesRecvByteBufAllocator.java:114)</span><br><span class="line">	io.netty.channel.nio.AbstractNioByteChannel$NioByteUnsafe.read(AbstractNioByteChannel.java:147)</span><br><span class="line">	io.netty.channel.nio.NioEventLoop.processSelectedKey(NioEventLoop.java:682)</span><br><span class="line">	io.netty.channel.nio.NioEventLoop.processSelectedKeysOptimized(NioEventLoop.java:617)</span><br><span class="line">	io.netty.channel.nio.NioEventLoop.processSelectedKeys(NioEventLoop.java:534)</span><br><span class="line">	io.netty.channel.nio.NioEventLoop.run(NioEventLoop.java:496)</span><br><span class="line">	io.netty.util.concurrent.SingleThreadEventExecutor$5.run(SingleThreadEventExecutor.java:906)</span><br><span class="line">	io.netty.util.internal.ThreadExecutorMap$2.run(ThreadExecutorMap.java:74)</span><br><span class="line">	java.lang.Thread.run(Thread.java:748)</span><br><span class="line">: 1 leak records were discarded because they were duplicates</span><br><span class="line">: 15 leak records were discarded because the leak record count is targeted to 4. Use system property io.netty.leakDetection.targetRecords to increase the limit.</span><br></pre></td></tr></table></figure>
+
+<p>找了很久，发现有些日志被丢弃了，而且找不到业务代码的异常信息。<br>于是再添加如下配置：</p>
 <ul>
-<li>第一种方案，主机将自己的公用密钥分发给相关的客户机，客户机在访问主机时则使用该主机的公开密钥来加密数据，主机则使用自己的私有密钥来解密数据，从而实现主机密钥认证，确定客户机的可靠身份</li>
-<li>第二种方案，存在一个密钥认证中心，所有系统中提供服务的主机都将自己的公开密钥提交给认证中心，而任何作为客户机的主机则只要保存一份认证中心的公开密钥就可以了<br>在这种模式下，客户机在访问服务器主机之前，还必须向密钥认证中心请求认证，认证之后才能够正确地连接到目的主机上。</li>
+<li>Netty记录数量参数：-Dio.netty.leakDetection.targetRecords=60</li>
 </ul>
-<h1 id="4-工作过程"><a href="#4-工作过程" class="headerlink" title="4. 工作过程"></a>4. 工作过程</h1><p>在整个通讯过程中，为实现 SSH的安全连接，服务器端与客户端要经历如下五个阶段：</p>
+<p>修改配置：</p>
 <ul>
-<li>版本号协商阶段，SSH目前包括SSH1和SSH2两个版本，双方通过版本协商确定使用的版本</li>
+<li>设置Netty内存泄露检测级别参数：-Dio.netty.leakDetection.level=paranoid</li>
 </ul>
-<ol>
-<li>服务器打开端口22，等待客户端连接</li>
-<li>客户端向服务器端发起TCP初始连接请求，TCP连接建立后，服务器向客户端发送第一个报文，包括版本标志字符串，格式为“SSH－&lt;主协议版本号&gt;.&lt;次协议版本号&gt;－&lt;软件版本号&gt;”，<br>协议版本号由主版本号和次版本号组成，软件版本号主要是为调试使用</li>
-<li>客户端收到报文后，解析该数据包，如果服务器端的协议版本号比自己的低，且客户端能支持服务器端的低版本，就使用服务器端的低版本协议号，否则使用自己的协议版本号</li>
-<li>客户端回应服务器一个报文，包含了客户端决定使用的协议版本号。服务器比较客户端发来的版本号，决定是否能同客户端一起工作</li>
-<li>如果协商成功，则进入密钥和算法协商阶段，否则服务器端断开TCP连接<br>版本号协商阶段报文都是采用明文方式传输的。</li>
-</ol>
-<ul>
-<li>密钥和算法协商阶段，SSH支持多种加密算法，双方根据本端和对端支持的算法，协商出最终使用的算法</li>
-</ul>
-<ol>
-<li>服务器端和客户端分别发送算法协商报文给对端，报文中包含自己支持的公钥算法列表、加密算法列表、MAC（Message Authentication Code，消息验证码）算法列表、压缩算法列表等</li>
-<li>服务器端和客户端根据对端和本端支持的算法列表得出最终使用的算法</li>
-<li>服务器端和客户端利用DH交换（Diffie-Hellman Exchange）算法、主机密钥对等参数，生成会话密钥和会话ID<br>通过以上步骤，服务器端和客户端就取得了相同的会话密钥和会话ID。对于后续传输的数据，两端都会使用会话密钥进行加密和解密，保证了数据传送的安全。<br>在认证阶段，两端会使用会话 ID用于认证过程。在协商阶段之前，服务器端已经生成RSA或DSA密钥对，他们主要用于参与会话密钥的生成。</li>
-</ol>
-<ul>
-<li>认证阶段，SSH客户端向服务器端发起认证请求，服务器端对客户端进行认证</li>
-</ul>
-<ol>
-<li>客户端向服务器端发送认证请求，认证请求中包含用户名、认证方法、与该认证方法相关的内容（如：password认证时，内容为密码）</li>
-<li>服务器端对客户端进行认证，如果认证失败，则向客户端发送认证失败消息，其中包含可以再次认证的方法列表</li>
-<li>客户端从认证方法列表中选取一种认证方法再次进行认证</li>
-<li>该过程反复进行，直到认证成功或者认证次数达到上限，服务器关闭连接为止<br>SSH提供两种认证方式：</li>
-<li>password认证：客户端向服务器发出password认证请求，将用户名和密码加密后发送给服务器；服务器将该信息解密后得到用户名和密码的明文，<br>与设备上保存的用户名和密码进行比较，并返回认证成功或失败的消息</li>
-<li>publickey认证：采用数字签名的方法来认证客户端。目前，设备上可以利用RSA和DSA两种公共密钥算法实现数字签名。客户端发送包含用户名、公共密钥和<br>公共密钥算法的publickey认证请求给服务器端。服务器对公钥进行合法性检查，如果不合法，则直接发送失败消息；否则，服务器利用数字签名对客户端进行认证，并返回认证成功或失败的消息</li>
-</ol>
-<ul>
-<li>会话请求阶段，认证通过后，客户端向服务器端发送会话请求</li>
-</ul>
-<ol>
-<li>服务器等待客户端的请求</li>
-<li>认证通过后，客户端向服务器发送会话请求</li>
-<li>服务器处理客户端的请求。请求被成功处理后，服务器会向客户端回应SSH_SMSG_SUCCESS包，SSH进入交互会话阶段；否则回应SSH_SMSG_FAILURE包，表示服务器处理请求失败或者不能识别请求</li>
-</ol>
-<ul>
-<li>交互会话阶段 ，会话请求通过后，服务器端和客户端进行信息的交互<br>在这个模式下，数据被双向传送：</li>
-</ul>
-<ol>
-<li>客户端将要执行的命令加密后传给服务器</li>
-<li>服务器接收到报文，解密后执行该命令，将执行的结果加密发还给客户端</li>
-<li>客户端将接收到的结果解密后显示到终端上</li>
-</ol>
-<h1 id="5-实践"><a href="#5-实践" class="headerlink" title="5. 实践"></a>5. 实践</h1><h2 id="5-1-公钥认证"><a href="#5-1-公钥认证" class="headerlink" title="5.1. 公钥认证"></a>5.1. 公钥认证</h2><h3 id="5-1-1-linuxA上ssh登录linuxB"><a href="#5-1-1-linuxA上ssh登录linuxB" class="headerlink" title="5.1.1 linuxA上ssh登录linuxB"></a>5.1.1 linuxA上ssh登录linuxB</h3><ul>
-<li>使用ssh-keygen命名在linuxA用户目录下生成.ssh目录，内含两个密钥文件。id_rsa 为私钥，id_rsa.pub 为公钥。</li>
-<li>在linuxB添加公钥</li>
-</ul>
-<ol>
-<li>使用ssh-copy-id -i id_rsa.pub linuxB_username@linuxB_ip，把生成的公钥发送到linuxB这台机器</li>
-<li>直接登录linuxB，把id_rsa.pub的内容复制到linuxB机器的authorized_keys文件中（在.ssh文件夹中）。请确保权限正确，chmod 600 authorized_keys |  chmod 700 ~/.ssh</li>
-</ol>
-<ul>
-<li>设置SSH，打开密钥登录功能</li>
-</ul>
-<ol>
-<li>编辑/etc/ssh/sshd_config，RSAAuthentication、PubkeyAuthentication设置为yes</li>
-<li>重启SSH服务service sshd restart</li>
-</ol>
-<h3 id="5-1-2-windows上ssh登录linuxB"><a href="#5-1-2-windows上ssh登录linuxB" class="headerlink" title="5.1.2 windows上ssh登录linuxB"></a>5.1.2 windows上ssh登录linuxB</h3><ul>
-<li>通过Xshell生成秘钥对</li>
-<li>放置生成的公钥到linuxB机器</li>
-<li>登录即可</li>
-</ul>
-<blockquote>
-<p>引用百度百科<br>引用<a href="https://blog.csdn.net/kluleia/article/details/8179232" target="_blank" rel="noopener">https://blog.csdn.net/kluleia/article/details/8179232</a></p>
-</blockquote>
+<p>再次测试，一把辛酸泪，摘抄部分关键如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line">Recent access records: </span><br><span class="line">#1:</span><br><span class="line">	io.netty.buffer.AdvancedLeakAwareByteBuf.nioBuffer(AdvancedLeakAwareByteBuf.java:712)</span><br><span class="line">	org.springframework.core.io.buffer.NettyDataBuffer.asByteBuffer(NettyDataBuffer.java:266)</span><br><span class="line">	cn.fintech.api.gateway.filter.WrapperServerHttpRequestDecorator.lambda$copy$0(WrapperServerHttpRequestDecorator.java:44)</span><br><span class="line">	reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onNext(FluxMapFuseable.java:107)</span><br><span class="line">	org.springframework.cloud.sleuth.instrument.reactor.ScopePassingSpanSubscriber.onNext(ScopePassingSpanSubscriber.java:96)</span><br><span class="line">	reactor.core.publisher.FluxIterable$IterableSubscription.fastPath(FluxIterable.java:311)</span><br><span class="line">	reactor.core.publisher.FluxIterable$IterableSubscription.request(FluxIterable.java:198)</span><br><span class="line">	org.springframework.cloud.sleuth.instrument.reactor.ScopePassingSpanSubscriber.request(ScopePassingSpanSubscriber.java:79)</span><br><span class="line">	reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.request(FluxMapFuseable.java:162)</span><br><span class="line">	org.springframework.cloud.sleuth.instrument.reactor.ScopePassingSpanSubscriber.request(ScopePassingSpanSubscriber.java:79)</span><br><span class="line">	reactor.core.publisher.MonoCollectList$MonoCollectListSubscriber.onSubscribe(MonoCollectList.java:72)</span><br><span class="line">	org.springframework.cloud.sleuth.instrument.reactor.ScopePassingSpanSubscriber.onSubscribe(ScopePassingSpanSubscriber.java:71)</span><br><span class="line">	reactor.core.publisher.FluxMapFuseable$MapFuseableSubscriber.onSubscribe(FluxMapFuseable.java:90)</span><br><span class="line">	org.springframework.cloud.sleuth.instrument.reactor.ScopePassingSpanSubscriber.onSubscribe(ScopePassingSpanSubscriber.java:71)</span><br></pre></td></tr></table></figure>
+
+<p>其中cn.fintech.api.gateway.filter.WrapperServerHttpRequestDecorator.lambda$copy$0(WrapperServerHttpRequestDecorator.java:44)看到了业务代码引出的问题，至此问题已经找到了。</p>
 
       
 
@@ -304,29 +263,7 @@
     <div class="article-info article-info-index">
       
       
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">ssh</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
       
-	<div class="article-category tagcloud">
-		<i class="icon-book icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="/categories/技术//" class="article-tag-list-link color3">技术</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
 
       
 
@@ -376,7 +313,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="http://bshare.optimix.asia/barCode?site=weixin&url=https://yintp.github.io/2019/10/21/ssh-1/" alt="微信分享二维码">
+      <img src="http://bshare.optimix.asia/barCode?site=weixin&url=https://yintp.github.io/2019/12/27/java-netty-1/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -391,18 +328,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/10/25/data-structure-1/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          数据相关名词
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/10/16/git-1/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">常用git命令</div>
+    <a href="/2019/12/26/essay-4/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">关于学习方式的一点思考</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -429,7 +357,7 @@
                 </span>
                 <span class="tooltip-content">
                     <div class="toc-article">
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#1-什么是ssh-Secure-Shell"><span class="toc-number">1.</span> <span class="toc-text">1. 什么是ssh(Secure Shell)?</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#2-协议框架"><span class="toc-number">2.</span> <span class="toc-text">2. 协议框架</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#3-主机密钥机制"><span class="toc-number">3.</span> <span class="toc-text">3. 主机密钥机制</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#4-工作过程"><span class="toc-number">4.</span> <span class="toc-text">4. 工作过程</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#5-实践"><span class="toc-number">5.</span> <span class="toc-text">5. 实践</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#5-1-公钥认证"><span class="toc-number">5.1.</span> <span class="toc-text">5.1. 公钥认证</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-1-linuxA上ssh登录linuxB"><span class="toc-number">5.1.1.</span> <span class="toc-text">5.1.1 linuxA上ssh登录linuxB</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#5-1-2-windows上ssh登录linuxB"><span class="toc-number">5.1.2.</span> <span class="toc-text">5.1.2 windows上ssh登录linuxB</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#记录一次Netty堆外内存溢出处理"><span class="toc-number">1.</span> <span class="toc-text">记录一次Netty堆外内存溢出处理</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#准备"><span class="toc-number">1.1.</span> <span class="toc-text">准备</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#异常以及分析"><span class="toc-number">1.2.</span> <span class="toc-text">异常以及分析</span></a></li></ol></li></ol>
                     </div>
                 </span>
             </div>

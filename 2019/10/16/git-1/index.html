@@ -8,18 +8,18 @@
   <link rel="dns-prefetch" href="https://yintp.github.io">
   <title>常用git命令 | yintp&#39;s blog</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="1. 查看提交历史 快速查看：git log –oneline –graph 精确查看：git log –graph –pretty=format:’%h | %an %cd | %s’ –date=format:’%Y-%m-%d %H:%M’ 查看远程：git log origin/branchName  2. 撤销合并git merge –abort">
+  <meta name="description" content="1. 查看提交历史 快速查看：  1git log --oneline --graph   精确查看：  1git log --graph --pretty=format:&apos;%h | %an %cd | %s&apos; --date=format:&apos;%Y-%m-%d %H:%M&apos;   查看远程分支：  1git log origin/branchName   查看并统计某个提交者非merge代码总数  1">
 <meta name="keywords" content="Git">
 <meta property="og:type" content="article">
 <meta property="og:title" content="常用git命令">
 <meta property="og:url" content="https://yintp.github.io/2019/10/16/git-1/index.html">
 <meta property="og:site_name" content="yintp&#39;s blog">
-<meta property="og:description" content="1. 查看提交历史 快速查看：git log –oneline –graph 精确查看：git log –graph –pretty=format:’%h | %an %cd | %s’ –date=format:’%Y-%m-%d %H:%M’ 查看远程：git log origin/branchName  2. 撤销合并git merge –abort">
+<meta property="og:description" content="1. 查看提交历史 快速查看：  1git log --oneline --graph   精确查看：  1git log --graph --pretty=format:&apos;%h | %an %cd | %s&apos; --date=format:&apos;%Y-%m-%d %H:%M&apos;   查看远程分支：  1git log origin/branchName   查看并统计某个提交者非merge代码总数  1">
 <meta property="og:locale" content="zh-CN">
-<meta property="og:updated_time" content="2019-11-12T08:48:10.361Z">
+<meta property="og:updated_time" content="2019-12-27T05:44:38.187Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="常用git命令">
-<meta name="twitter:description" content="1. 查看提交历史 快速查看：git log –oneline –graph 精确查看：git log –graph –pretty=format:’%h | %an %cd | %s’ –date=format:’%Y-%m-%d %H:%M’ 查看远程：git log origin/branchName  2. 撤销合并git merge –abort">
+<meta name="twitter:description" content="1. 查看提交历史 快速查看：  1git log --oneline --graph   精确查看：  1git log --graph --pretty=format:&apos;%h | %an %cd | %s&apos; --date=format:&apos;%Y-%m-%d %H:%M&apos;   查看远程分支：  1git log origin/branchName   查看并统计某个提交者非merge代码总数  1">
   
     <link rel="alternative" href="/atom.xml" title="yintp&#39;s blog" type="application/atom+xml">
   
@@ -183,30 +183,74 @@
     <div class="article-entry" itemprop="articleBody">
       
         <h1 id="1-查看提交历史"><a href="#1-查看提交历史" class="headerlink" title="1. 查看提交历史"></a>1. 查看提交历史</h1><ul>
-<li>快速查看：git log –oneline –graph</li>
-<li>精确查看：git log –graph –pretty=format:’%h | %an %cd | %s’ –date=format:’%Y-%m-%d %H:%M’</li>
-<li>查看远程：git log origin/branchName</li>
+<li>快速查看：</li>
 </ul>
-<h1 id="2-撤销合并"><a href="#2-撤销合并" class="headerlink" title="2. 撤销合并"></a>2. 撤销合并</h1><p>git merge –abort</p>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --oneline --graph</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>精确查看：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --graph --pretty=format:<span class="string">'%h | %an %cd | %s'</span> --date=format:<span class="string">'%Y-%m-%d %H:%M'</span></span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看远程分支：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> origin/branchName</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看并统计某个提交者非merge代码总数</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git <span class="built_in">log</span> --oneline --author=yintp --no-merges |grep -c <span class="string">".*"</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="2-撤销合并"><a href="#2-撤销合并" class="headerlink" title="2. 撤销合并"></a>2. 撤销合并</h1><figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git merge --abort</span><br></pre></td></tr></table></figure>
+
 <a id="more"></a>
 
 <h1 id="3-查看差异"><a href="#3-查看差异" class="headerlink" title="3. 查看差异"></a>3. 查看差异</h1><ul>
-<li>工作区和暂存区的区别：git diff</li>
-<li>工作区和版本库的区别：git diff HEAD</li>
-<li>暂存区和版本库的区别：git diff –cached</li>
+<li>工作区和暂存区的区别：</li>
 </ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>工作区和版本库的区别：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff HEAD</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>暂存区和版本库的区别：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git diff --cached</span><br></pre></td></tr></table></figure>
+
 <h1 id="4-删除没有跟踪过的文件"><a href="#4-删除没有跟踪过的文件" class="headerlink" title="4. 删除没有跟踪过的文件"></a>4. 删除没有跟踪过的文件</h1><ul>
-<li>查看会删掉的文件：git clean -n</li>
-<li>删除当前目录下的文件：git clean -f</li>
+<li>查看会删掉的文件：</li>
 </ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clean -n</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>删除当前目录下的文件：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git clean -f</span><br></pre></td></tr></table></figure>
+
 <h1 id="5-版本回退"><a href="#5-版本回退" class="headerlink" title="5. 版本回退"></a>5. 版本回退</h1><ul>
-<li>git reset hash</li>
+<li>指定提交hash回退（默认为soft）</li>
 </ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git reset <span class="built_in">hash</span></span><br></pre></td></tr></table></figure>
+
 <h1 id="6-查看提交所属分支"><a href="#6-查看提交所属分支" class="headerlink" title="6. 查看提交所属分支"></a>6. 查看提交所属分支</h1><ul>
-<li>查看本地所有分支：git branch –contains CommitID</li>
-<li>查看远程所有分支：git branch -r –contains CommitID</li>
-<li>查看本地和远程所有分支：git branch -a –contains CommitID</li>
+<li>查看本地所有分支：</li>
 </ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch --contains CommitID</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看远程所有分支：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -r --contains CommitID</span><br></pre></td></tr></table></figure>
+
+<ul>
+<li>查看本地和远程所有分支：</li>
+</ul>
+<figure class="highlight bash"><table><tr><td class="gutter"><pre><span class="line">1</span><br></pre></td><td class="code"><pre><span class="line">git branch -a --contains CommitID</span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -504,11 +548,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据结构和算法</a>
+                <a href="javascript:void(0)" class="js-tag color3">思考</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">思考</a>
+                <a href="javascript:void(0)" class="js-tag color3">数据结构和算法</a>
               </li>
              
               <li class="article-tag-list-item">
